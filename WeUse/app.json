@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/post/post",
+    "pages/me/me",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "WeUse",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#317ff6",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "FIND",
+        "iconPath": "icons/home.png",
+        "selectedIconPath": "icons/home-sel.png"
+      },
+      {
+        "pagePath": "pages/post/post",
+        "text": "POST",
+        "iconPath": "icons/post.png",
+        "selectedIconPath": "icons/post-sel.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "ME",
+        "iconPath": "icons/me.png",
+        "selectedIconPath": "icons/me-sel.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
