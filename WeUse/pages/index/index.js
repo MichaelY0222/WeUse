@@ -1,6 +1,7 @@
 // pages/index/index.js
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
+const itemList = require('../../itemList.js');
 Page({
 
   /**
@@ -10,6 +11,7 @@ Page({
     clickCountTop: 0,
     resetTimerTop: null,
     registeredUsersData: [],
+    itemList: [],
     showDebugInfo: false,
   },
 
@@ -18,6 +20,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
+      itemList,
       showDebugInfo: wx.getStorageSync('showDebug')
     })
   },
