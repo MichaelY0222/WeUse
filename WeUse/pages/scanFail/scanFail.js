@@ -1,4 +1,4 @@
-// pages/post/post.js
+// pages/scanFail/scanFail.js
 Page({
 
   /**
@@ -14,6 +14,12 @@ Page({
   onLoad(options) {
     this.setData({
       showDebugInfo: wx.getStorageSync('showDebug')
+    })
+  },
+
+  back: function (event) {
+    wx.navigateBack({
+      url: '/pages/index/index',
     })
   },
 })

@@ -27,6 +27,7 @@
   padding-right: 15px;
   justify-content: space-between;
   display: flex;
+  align-items: center;
 }
 
 .subheading{
@@ -44,4 +45,77 @@
   font-weight: bold;
   padding-top: 10px;
   text-align: center;
+}
+
+.subtextBlue{
+  color: blue;
+  margin-right: 25px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.iconscan{
+  width: 45px; /* Adjust the width and height as needed */
+  height: 45px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.iconField{
+  width: 45px; /* Adjust the width and height as needed */
+  height: 45px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+.button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background-color: #D2E3FA;
+  padding-top: 5px;
+  width: 138px;
+  height: 48px;
+}
+
+.input{
+  border-radius: 10px;
+  background-color: #D2E3FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 15pt;
+  font-weight: bold;
+    width: 88%;
+    margin: 0 3%;  
+    padding: 15px;
+    padding-left: 10px; 
+    padding-top: 10px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.switch{
+  border-radius: 10px;
+  background-color: #D2E3FA;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  width: 89%;
+  margin: 0 3%;  
+  padding: 10px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.space{
+    padding-top: 5px;
+}
+
+.spacelast{
+    padding-top: 20px;
 }

@@ -1,4 +1,4 @@
 <!--pages/post/post.wxml-->
 <view class="page">
-  <text>pages/post/post.wxml</text>
+  <text hidden="{{!showDebugInfo}}">pages/post/post.wxml</text>
 </view>

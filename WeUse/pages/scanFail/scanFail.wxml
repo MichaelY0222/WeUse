@@ -1,0 +1,12 @@
+<!--pages/scanFail/scanFail.wxml-->
+<view class="page">
+  <text hidden="{{!showDebugInfo}}">pages/scanFail/scanFail.wxml</text>
+  <view class="heading">Scan Failed</view>
+  <view class="iconViewport">
+    <image src="../../icons/redx.svg" class="icon"></image>
+  </view>
+  <view class="text">
+    <text>This is not a vaild WeUse Code.</text>
+  </view>
+  <button class="button" bindtap="back">Dismiss</button>
+</view>

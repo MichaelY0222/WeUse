@@ -3,6 +3,8 @@
     "pages/index/index",
     "pages/post/post",
     "pages/me/me",
+    "pages/adminOverride/adminOverride",
+    "pages/scanFail/scanFail",
     "pages/logs/logs"
   ],
   "window": {
@@ -17,7 +19,7 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "FIND",
+        "text": "HOME",
         "iconPath": "icons/home.png",
         "selectedIconPath": "icons/home-sel.png"
       },
