@@ -11,4 +11,13 @@
     <text class="subtext">Search</text>
   </input>
   <text class="footnotes" bindtap="adminOverride">Version 1.0</text>
+  <view style="position: relative; width: 352rpx; background: #d3d3d3; height: 455rpx; left: 24rpx; top: 42rpx; display: grid; box-sizing: border-box">
+        <image style="position: relative; width: 352rpx; height: 292rpx; display: inline-block; box-sizing: border-box; left: 0rpx; top: 44rpx" src="/images/CASIO fx-991CN X.png">
+            <text style="position:relative;">文本内容...</text>
+        </image>
+        
+        <text style="position: relative; left: 0rpx; top: 42rpx; width: 307rpx; height: 120rpx; display: block; box-sizing: border-box">Available: 3\nGrades: 8~12\nSubject: Mathematics</text>
+        
+        <text style="position: relative; left: 0rpx; top: -412rpx">CASIO fx-991CN X</text>
+    </view>
 </view>
