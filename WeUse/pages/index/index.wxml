@@ -6,7 +6,7 @@
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
-  <view class="contentContainer">
+  <view wx:if="{{guestStatus}}">
     <input class="search" placeholder="Search" type="text" />
     <view class="spacelast"></view>
     <scroll-view scroll-y="true" class="itemScroll">
@@ -14,23 +14,29 @@
         <view class="item">
           <text class="itemText">{{item.name}}</text>
           <image class="itemImage" src="{{item.imgUrl}}"></image>
-          <text class="itemText">Available: {{item.quantity}}\n</text>
-          <text class="itemText">Grades: {{item.grades}}\n</text>
-          <text class="itemText">Subject: {{item.subject}}\n</text>
+          <text class="itemText">Available: {{item.quantity}}</text>
+          <text class="itemText">Grades: {{item.grades}}</text>
+          <text class="itemText">Subject: {{item.subject}}</text>
           <text class="itemText">Stamps: {{item.stamps}}</text>
         </view>
         <view class="item">
           <text class="itemText">{{item.name}}</text>
           <image class="itemImage" src="{{item.imgUrl}}"></image>
-          <text class="itemText">Available: {{item.quantity}}\n</text>
-          <text class="itemText">Grades: {{item.grades}}\n</text>
-          <text class="itemText">Subject: {{item.subject}}\n</text>
+          <text class="itemText">Available: {{item.quantity}}</text>
+          <text class="itemText">Grades: {{item.grades}}</text>
+          <text class="itemText">Subject: {{item.subject}}</text>
           <text class="itemText">Stamps: {{item.stamps}}</text>
         </view>
       </view>
     </scroll-view>
-    <text class="footnotes" bindtap="adminOverride">Version 1.0</text>
   </view>
+  <view class="container" wx:else>
+    <image src="../../icons/lock.png" class="lockIcon"></image>
+    <text class="subheading">Login is required to use this service</text>
+    <view class="spacelast"></view>
+    <button class="button" bindtap="guestLogin">Login</button>
+  </view>
+  <text class="footnotes" bindtap="adminOverride">Version 1.0</text>
   <!--view style="position: relative; width: 352rpx; background: #d3d3d3; height: 455rpx; left: 24rpx; top: 42rpx; display: grid; box-sizing: border-box">
         <image style="position: relative; width: 352rpx; height: 292rpx; display: inline-block; box-sizing: border-box; left: 0rpx; top: 44rpx" src="/images/CASIO fx-991CN X.png">
             <text style="position:relative;">文本内容...</text>

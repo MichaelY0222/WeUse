@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
 
 .page {
   min-height: 100vh;
@@ -118,4 +118,9 @@
 
 .spacelast{
     padding-top: 20px;
+}
+
+.lockIcon{
+  width: 30vw;
+  height: 17vh;
 }

@@ -1,0 +1,24 @@
+<!--pages/registration/registration.wxml-->
+<view class="page">
+  <text hidden="{{!showDebugInfo}}">pages/registration/registration.wxml</text>
+  <view class="heading">
+    <text>Registration</text>
+    <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
+  </view>
+  <view class="space"></view>
+  <text class="notes">For security reasons, registration is required to use WeUse services.</text>
+  <text class="notes">Have your student ID with you? Try using the scan button! Please use capital letters.</text>
+  <text class="notes">Don't have a chinese name? Try using your english full name, or click "Unable to Verify"</text>
+  <view class="spacelast"></view>
+  <input class="input" placeholder="Student ID" bindinput="onStudentIdInput" value="{{ studentId }}">
+      <image src="../../icons/scan.svg" class="iconField" bindtap="scanId"></image>
+  </input>
+  <view class="space"></view>
+  <input class="input" placeholder="Chinese Name" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
+  <view class="space"></view>
+  <view class="subtextBlue" bindtap="help">Unable to Verify?</view>
+  <view class="spacelast"></view>
+  <button class="button" bindtap="onVerify">Verify</button>
+  <view class="spacelast"></view>
+  <button class="button" bindtap="home">Return to Home</button>
+</view>

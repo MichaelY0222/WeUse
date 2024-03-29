@@ -10,9 +10,9 @@ Page({
   data: {
     clickCountTop: 0,
     resetTimerTop: null,
-    registeredUsersData: [],
     itemList: [],
     showDebugInfo: false,
+    guestStatus: false,
   },
 
   /**
@@ -21,7 +21,8 @@ Page({
   onLoad(options) {
     this.setData({
       itemList,
-      showDebugInfo: wx.getStorageSync('showDebug')
+      showDebugInfo: wx.getStorageSync('showDebug'),
+      guestStatus: wx.getStorageSync('guestStatus')
     })
   },
 
@@ -92,5 +93,11 @@ Page({
         resetTimerTop: newResetTimer,
       });
     }
+  },
+
+  guestLogin: function (e) {
+    wx.reLaunch({
+      url: '/pages/registration/registration',
+    });
   },
 })

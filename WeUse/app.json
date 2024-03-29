@@ -5,6 +5,7 @@
     "pages/me/me",
     "pages/adminOverride/adminOverride",
     "pages/scanFail/scanFail",
+    "pages/registration/registration",
     "pages/logs/logs"
   ],
   "window": {

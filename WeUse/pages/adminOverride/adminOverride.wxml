@@ -20,8 +20,10 @@
     <view class="spacelast"></view>
     <switch class="switch" checked="{{showDebugInfo}}" bindchange="onDebugSwitch">Show Debug</switch>
     <view class="spacelast"></view>
-    <button class="button" bindtap="logout">Logout</button>
+    <button class="button" bindtap="logout">Admin Logout</button>
   </view>
   <view class="spacelast"></view>
+  <button class="button" bindtap="guestLogout" hidden="{{!guestStatus}}">Guest Logout</button>
+  <view class="spacelast" hidden="{{!guestStatus}}"></view>
   <button class="button" bindtap="home">Return to Home</button>
 </view>

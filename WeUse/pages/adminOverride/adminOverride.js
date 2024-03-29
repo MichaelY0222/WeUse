@@ -10,12 +10,14 @@ Page({
     scanUsername: '',
     showDebugInfo: false,
     loginStatus: false,
+    guestStatus: false
   },
   onLoad: function (options) {
       const scanUsername = options.scanUsername || '';
         this.setData({
           showDebugInfo: wx.getStorageSync('showDebug'),
           loginStatus: wx.getStorageSync('isLoggedIn'),
+          guestStatus: wx.getStorageSync('guestStatus'),
           username: scanUsername,
         });
   },
@@ -31,6 +33,14 @@ Page({
     // Update the 'password' data variable as the user types
     this.setData({
       password: e.detail.value,
+    });
+  },
+
+  guestLogout: function (e) {
+    // Update the 'username' data variable as the user types
+    wx.setStorageSync('guestStatus', false)
+    this.setData({
+      guestStatus: false,
     });
   },
 

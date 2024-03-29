@@ -7,6 +7,7 @@ App({
     wx.setStorageSync('logs', logs)
     wx.setStorageSync('showDebug', false)
     wx.setStorageSync('isLoggedIn', false)
+    wx.setStorageSync('guestStatus', false)
   },
   globalData: {
     userInfo: null

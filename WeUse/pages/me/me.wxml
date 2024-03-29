@@ -1,4 +1,9 @@
 <!--pages/me/me.wxml-->
 <view class="page">
   <text hidden="{{!showDebugInfo}}">pages/me/me.wxml</text>
+  <view class="heading">
+    <text>Me</text>
+    <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
+  </view>
+  <view class="spacelast"></view>
 </view>
