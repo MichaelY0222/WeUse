@@ -16,6 +16,8 @@ Page({
     guestStatus: false,
     gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     gradeFilterIndex: 0,
+    subjectFilters: ['All','Math'],
+    subjectFilterIndex: 0,
   },
 
   /**
@@ -60,6 +62,13 @@ Page({
     this.filterList();
   },
 
+  bindSubjectFilter: function (event) {
+    this.setData({
+      subjectFilterIndex: event.detail.value
+    })
+    this.filterList();
+  },
+
   fillInHyphen: function (grades) {
     if (grades !== undefined && grades.includes('-')) {
       let start = parseInt(grades.substring(0, grades.indexOf('-')));
@@ -85,18 +94,30 @@ Page({
 
   filterList: function () {
     itemListFiltered = itemList;
+    
+    if (this.data.substringFilter != undefined) {
+      itemListFiltered = itemListFiltered.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
+    }
 
-    if (itemListFiltered.length > 0) {
-      itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
-    }
     let selectedGrade = this.data.gradeFilters[this.data.gradeFilterIndex];
-    if (selectedGrade.length<2) {
-      selectedGrade = "0" + selectedGrade;
-      console.log(selectedGrade);
+    console.log(selectedGrade); ////////
+    if (selectedGrade !== undefined) {
+      if (selectedGrade.length<2) {
+        selectedGrade = "0" + selectedGrade;
+      }
+      if (selectedGrade !== "All") {
+        itemListFiltered = itemListFiltered.filter(item => this.fillInHyphen(item.grades).includes(selectedGrade));
+      }
     }
-    if (selectedGrade !== "All") {
-      itemListFiltered = itemListFiltered.filter(item => this.fillInHyphen(item.grades).includes(selectedGrade));
+
+    let selectedSubject = this.data.subjectFilters[this.data.subjectFilterIndex];
+    console.log(selectedSubject); ////////
+    if (selectedSubject !== undefined) {
+      if (selectedSubject !== "All") {
+        itemListFiltered = itemListFiltered.filter(item => item.subject.includes(selectedSubject));
+      }
     }
+
     this.refreshList();
   },
 
