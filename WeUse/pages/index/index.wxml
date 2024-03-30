@@ -9,13 +9,13 @@
   <view wx:if="{{guestStatus}}">
     <input class="search" placeholder="Search" type="text" bindinput="bindSearchList"/>
     <view style="display: flex; flex-direction: row; align-items: center;">
-      <text style="margin-left:30px;">
+      <text class='filterText' style="margin-left:20px;">
       Filter by: 
       </text>
       <picker class="filterMenu" mode="selector" bindchange="bindGradeFilter" range="{{gradeFilters}}" style="margin-left: 20px;">
       Grade: {{gradeFilters[gradeFilterIndex]}}
       </picker>
-      <picker class="filterMenu" mode="selector" bindchange="bindSubjectFilter" range="{{subjectFilters}}" style="margin-left: -30px;">
+      <picker class="filterMenu" mode="selector" bindchange="bindSubjectFilter" range="{{subjectFilters}}" style="margin-left: 40px; width: 40vw;">
       Subject: {{subjectFilters[subjectFilterIndex]}}
       </picker>
     </view>

@@ -54,17 +54,17 @@
 }
 
 .filterMenu{
-  width: 30vw;
+  width: 20vw;
   height: 1vh;
-  margin-top: -5px;
+  margin-top: 5px;
 }
 
 .filterText{
   width: 20vw;
   height: 1vh;
-  margin-top: -10px;
+  margin-top: -40px;
 }
 
 .smallSpace{
-  height: 10px;
+  height: 40px;
 }
