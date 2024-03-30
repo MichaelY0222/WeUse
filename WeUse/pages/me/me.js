@@ -1,5 +1,5 @@
 // pages/me/me.js
-let QRData = '';
+let QRData = ''; // THIS IS A COMMENT IN MAIN
 const userCredentials = require('../../userCredentials.js');
 Page({
 
