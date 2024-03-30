@@ -2,8 +2,8 @@
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const itemList = require('../../itemList.js');
-Page({
 
+Page({
   /**
    * Page initial data
    */
@@ -22,7 +22,9 @@ Page({
     this.setData({
       itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),
-      guestStatus: wx.getStorageSync('guestStatus')
+      guestStatus: wx.getStorageSync('guestStatus'),
+      itemListOdd: itemList.filter((item, index) => index % 2 === 0),
+      itemListEven: itemList.filter((item, index) => index % 2 === 1),
     })
   },
 
