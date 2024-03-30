@@ -65,7 +65,7 @@ Page({
       let start = parseInt(grades.substring(0, grades.indexOf('-')));
       let end = parseInt(grades.substring(grades.indexOf('-')+1, grades.length));
       let output = ''
-      for (let i = start; i < end; i++) {
+      for (let i = start; i <= end; i++) {
         if (i < 10){
           output += "0";
         }
