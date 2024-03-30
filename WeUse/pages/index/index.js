@@ -16,7 +16,7 @@ Page({
     guestStatus: false,
     gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     gradeFilterIndex: 0,
-    subjectFilters: ['All','Math'],
+    subjectFilters: ['All'],
     subjectFilterIndex: 0,
   },
 
@@ -35,6 +35,15 @@ Page({
     })
     this.setData({
       itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length
+    })
+    let tempList = [];
+    for (let i = 0; i < itemList.length; i++) {
+      if (!tempList.includes(itemList[i].subject)) {
+        tempList.push(itemList[i].subject);
+      }
+    }
+    this.setData({
+      subjectFilters: this.data.subjectFilters.concat(tempList.sort())
     })
   },
 
