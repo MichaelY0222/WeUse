@@ -86,7 +86,7 @@ Page({
   filterList: function () {
     itemListFiltered = itemList;
 
-    if (itemListFiltered.lastIndexOf > 0) {
+    if (itemListFiltered.length > 0) {
       itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
     }
     let selectedGrade = this.data.gradeFilters[this.data.gradeFilterIndex];
