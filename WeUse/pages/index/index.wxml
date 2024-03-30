@@ -7,7 +7,7 @@
   </view>
   <view class="spacelast"></view>
   <view wx:if="{{guestStatus}}">
-    <input class="search" placeholder="Search" type="text" bindinput="searchList"/>
+    <input class="search" placeholder="Search" type="text" bindinput="bindSearchList"/>
     <view style="display: flex; flex-direction: row; align-items: center;">
       <text>
       Filter by: 

@@ -21,7 +21,7 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
+  onLoad (options) {
     this.setData({
       itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),
@@ -46,16 +46,16 @@ Page({
     })
   },
 
-  searchList: function(e) {
+  bindSearchList: function (event) {
     this.setData({
-      substringFilter: e.detail.value
+      substringFilter: event.detail.value
     })
     this.filterList();
   },
 
-  bindGradeFilter: function(e) {
+  bindGradeFilter: function (event) {
     this.setData({
-      gradeFilterIndex: e.detail.value
+      gradeFilterIndex: event.detail.value
     })
     this.filterList();
   },
@@ -83,7 +83,7 @@ Page({
     }
   },
 
-  filterList: function() {
+  filterList: function () {
     itemListFiltered = itemList;
 
     if (itemListFiltered.lastIndexOf > 0) {
