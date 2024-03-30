@@ -14,17 +14,17 @@
         <view class="item">
           <text class="itemText">{{itemListOdd[index].name}}</text>
           <image class="itemImage" src="{{itemListOdd[index].imgUrl}}"></image>
-          <text class="itemText">Available: {{itemListOdd[index].quantity}}</text>
-          <text class="itemText">Grades: {{itemListOdd[index].grades}}</text>
-          <text class="itemText">Subject: {{itemListOdd[index].subject}}</text>
+          <text class="itemText">Available: {{itemListOdd[index].quantity}}\n</text>
+          <text class="itemText">Grades: {{itemListOdd[index].grades}}\n</text>
+          <text class="itemText">Subject: {{itemListOdd[index].subject}}\n</text>
           <text class="itemText">Stamps: {{itemListOdd[index].stamps}}</text>
         </view>
         <view class="item">
           <text class="itemText">{{itemListEven[index].name}}</text>
           <image class="itemImage" src="{{itemListEven[index].imgUrl}}"></image>
-          <text class="itemText">Available: {{itemListEven[index].quantity}}</text>
-          <text class="itemText">Grades: {{itemListEven[index].grades}}</text>
-          <text class="itemText">Subject: {{itemListEven[index].subject}}</text>
+          <text class="itemText">Available: {{itemListEven[index].quantity}}\n</text>
+          <text class="itemText">Grades: {{itemListEven[index].grades}}\n</text>
+          <text class="itemText">Subject: {{itemListEven[index].subject}}\n</text>
           <text class="itemText">Stamps: {{itemListEven[index].stamps}}</text>
         </view>
       </view>
@@ -32,9 +32,9 @@
         <view class="item">
           <text class="itemText">{{itemListOdd[itemListOdd.length-1].name}}</text>
           <image class="itemImage" src="{{itemListOdd[itemListOdd.length-1].imgUrl}}"></image>
-          <text class="itemText">Available: {{itemListOdd[itemListOdd.length-1].quantity}}</text>
-          <text class="itemText">Grades: {{itemListOdd[itemListOdd.length-1].grades}}</text>
-          <text class="itemText">Subject: {{itemListOdd[itemListOdd.length-1].subject}}</text>
+          <text class="itemText">Available: {{itemListOdd[itemListOdd.length-1].quantity}}\n</text>
+          <text class="itemText">Grades: {{itemListOdd[itemListOdd.length-1].grades}}\n</text>
+          <text class="itemText">Subject: {{itemListOdd[itemListOdd.length-1].subject}}\n</text>
           <text class="itemText">Stamps: {{itemListOdd[itemListOdd.length-1].stamps}}</text>
         </view>
       </view>
