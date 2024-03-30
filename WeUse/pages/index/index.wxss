@@ -62,3 +62,7 @@
   width: 20vw;
   height: 1vh;
 }
+
+.smallSpace{
+  height: 10px;
+}
