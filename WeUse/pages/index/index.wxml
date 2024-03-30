@@ -20,12 +20,12 @@
           <text class="itemText">Stamps: {{itemListOdd[index].stamps}}</text>
         </view>
         <view class="item">
-          <text class="itemText">{{itemListEven[index].name}}</text>
-          <image class="itemImage" src="{{itemListEven[index].imgUrl}}"></image>
-          <text class="itemText">Available: {{itemListEven[index].quantity}}\n</text>
-          <text class="itemText">Grades: {{itemListEven[index].grades}}\n</text>
-          <text class="itemText">Subject: {{itemListEven[index].subject}}\n</text>
-          <text class="itemText">Stamps: {{itemListEven[index].stamps}}</text>
+          <text class="itemText">{{item.name}}</text>
+          <image class="itemImage" src="{{item.imgUrl}}"></image>
+          <text class="itemText">Available: {{item.quantity}}\n</text>
+          <text class="itemText">Grades: {{item.grades}}\n</text>
+          <text class="itemText">Subject: {{item.subject}}\n</text>
+          <text class="itemText">Stamps: {{item.stamps}}</text>
         </view>
       </view>
       <view class="itemRow" wx:if="{{itemListsLengthDifferent}}">
