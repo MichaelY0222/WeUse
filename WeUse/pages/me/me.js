@@ -1,5 +1,5 @@
 // pages/me/me.js
-let QRData = ''; // THIS IS A COMMENT IN BRANCH
+let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 Page({
 
