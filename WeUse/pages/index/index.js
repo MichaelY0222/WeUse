@@ -14,7 +14,7 @@ Page({
     itemList: [],
     showDebugInfo: false,
     guestStatus: false,
-    gradeFilters: ['All','1','7','8','10','11','12'],
+    gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     gradeFilterIndex: 0,
   },
 
