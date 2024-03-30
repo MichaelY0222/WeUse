@@ -18,6 +18,8 @@ Page({
     gradeFilterIndex: 0,
     subjectFilters: ['All'],
     subjectFilterIndex: 0,
+    levelFilters: ['All', 'S', 'S+', 'H', 'H+'],
+    levelFilterIndex: 0,
   },
 
   /**
@@ -78,6 +80,13 @@ Page({
     this.filterList();
   },
 
+  bindLevelFilter: function (event) {
+    this.setData({
+      levelFilterIndex: event.detail.value
+    })
+    this.filterList();
+  },
+
   fillInHyphen: function (grades) {
     if (grades !== undefined && grades.includes('-')) {
       let start = parseInt(grades.substring(0, grades.indexOf('-')));
@@ -89,7 +98,6 @@ Page({
         }
         output += i.toString() + "_";
       }  
-      console.log(output);
       return output;
     }
     else {
@@ -109,7 +117,6 @@ Page({
     }
 
     let selectedGrade = this.data.gradeFilters[this.data.gradeFilterIndex];
-    console.log(selectedGrade); ////////
     if (selectedGrade !== undefined) {
       if (selectedGrade.length<2) {
         selectedGrade = "0" + selectedGrade;
@@ -120,10 +127,16 @@ Page({
     }
 
     let selectedSubject = this.data.subjectFilters[this.data.subjectFilterIndex];
-    console.log(selectedSubject); ////////
     if (selectedSubject !== undefined) {
       if (selectedSubject !== "All") {
         itemListFiltered = itemListFiltered.filter(item => item.subject.includes(selectedSubject));
+      }
+    }
+
+    let selectedLevel = this.data.levelFilters[this.data.levelFilterIndex];
+    if (selectedLevel !== undefined) {
+      if (selectedLevel !== "All") {
+        itemListFiltered = itemListFiltered.filter(item => (item.level + '_').includes(selectedLevel+'_'));
       }
     }
 

@@ -12,11 +12,14 @@
       <text class='filterText' style="margin-left:20px;">
       Filter by: 
       </text>
-      <picker class="filterMenu" mode="selector" bindchange="bindGradeFilter" range="{{gradeFilters}}" style="margin-left: 20px;">
+      <picker class="filterMenu" mode="selector" bindchange="bindGradeFilter" range="{{gradeFilters}}" style="margin-left: 10px;">
       Grade: {{gradeFilters[gradeFilterIndex]}}
       </picker>
-      <picker class="filterMenu" mode="selector" bindchange="bindSubjectFilter" range="{{subjectFilters}}" style="margin-left: 40px; width: 40vw;">
+      <picker class="filterMenu" mode="selector" bindchange="bindSubjectFilter" range="{{subjectFilters}}" style="margin-left: 20px; width: 20vw;">
       Subject: {{subjectFilters[subjectFilterIndex]}}
+      </picker>
+      <picker class="filterMenu" mode="selector" bindchange="bindLevelFilter" range="{{levelFilters}}" style="margin-left: 20px;">
+      Level: {{levelFilters[levelFilterIndex]}}
       </picker>
     </view>
     <view class="smallSpace"></view>
