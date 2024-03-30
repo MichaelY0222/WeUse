@@ -52,3 +52,13 @@
   width: 40vw;
   height: 23vh;
 }
+
+.filterMenu{
+  width: 20vw;
+  height: 1vh;
+}
+
+.filterText{
+  width: 20vw;
+  height: 1vh;
+}

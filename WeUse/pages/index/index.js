@@ -14,6 +14,8 @@ Page({
     itemList: [],
     showDebugInfo: false,
     guestStatus: false,
+    gradeFilters: ['All','7','8','10','11','12'],
+    gradeFilterIndex: 0,
   },
 
   /**
@@ -45,8 +47,29 @@ Page({
   },
 
   searchList: function(e) {
-    let substringFilter = e.detail.value;
-    itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(substringFilter.toLowerCase()));
+    this.setData({
+      substringFilter: e.detail.value
+    })
+    this.filterList();
+  },
+
+  bindGradeFilter: function(e) {
+    this.setData({
+      gradeFilterIndex: e.detail.value
+    })
+    this.filterList();
+  },
+
+  filterList: function() {
+    itemListFiltered = itemList;
+    
+    if (itemListFiltered.lastIndexOf > 0) {
+      itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
+    }
+    let selectedGrade = this.data.gradeFilters[this.data.gradeFilterIndex];
+    if (selectedGrade !== "All") {
+      itemListFiltered = itemListFiltered.filter(item => item.grades.includes(selectedGrade));
+    }
     this.refreshList();
   },
 
