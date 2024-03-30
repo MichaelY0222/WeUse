@@ -2,6 +2,7 @@
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const itemList = require('../../itemList.js');
+let itemListFiltered = itemList;
 
 Page({
   /**
@@ -23,12 +24,30 @@ Page({
       itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),
       guestStatus: wx.getStorageSync('guestStatus'),
+    })
+    this.setData({
       itemListOdd: itemList.filter((item, index) => index % 2 === 0),
       itemListEven: itemList.filter((item, index) => index % 2 === 1),
     })
     this.setData({
       itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length
     })
+  },
+
+  refreshList: function () {
+    this.setData({
+      itemListOdd: itemListFiltered.filter((item, index) => index % 2 === 0),
+      itemListEven: itemListFiltered.filter((item, index) => index % 2 === 1),
+    })
+    this.setData({
+      itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length
+    })
+  },
+
+  searchList: function(e) {
+    let substringFilter = e.detail.value;
+    itemListFiltered = itemList.filter(item => item.name.includes(substringFilter));
+    this.refreshList();
   },
 
   scan: function (event) {

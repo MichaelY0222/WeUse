@@ -7,7 +7,7 @@
   </view>
   <view class="spacelast"></view>
   <view wx:if="{{guestStatus}}">
-    <input class="search" placeholder="Search" type="text" />
+    <input class="search" placeholder="Search" type="text" bindinput="searchList"/>
     <view class="spacelast"></view>
     <scroll-view scroll-y="true" class="itemScroll">
       <view wx:for="{{itemListEven}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
