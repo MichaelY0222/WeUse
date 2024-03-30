@@ -60,15 +60,30 @@ Page({
     this.filterList();
   },
 
+  fillInHyphen: function (grades) {
+    if (grades !== undefined && grades.includes('-')) {
+      let start = parseInt(grades.substring(0, grades.indexOf('-')));
+      let end = parseInt(grades.substring(grades.indexOf('-')+1, grades.length));
+      let output = ''
+      for (let i = start; i < end; i++) {
+        output += i.toString();
+      }  
+      return output;
+    }
+    else {
+      return grades;
+    }
+  },
+
   filterList: function() {
     itemListFiltered = itemList;
-    
+
     if (itemListFiltered.lastIndexOf > 0) {
       itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
     }
     let selectedGrade = this.data.gradeFilters[this.data.gradeFilterIndex];
     if (selectedGrade !== "All") {
-      itemListFiltered = itemListFiltered.filter(item => item.grades.includes(selectedGrade));
+      itemListFiltered = itemListFiltered.filter(item => this.fillInHyphen(item.grades).includes(selectedGrade));
     }
     this.refreshList();
   },
