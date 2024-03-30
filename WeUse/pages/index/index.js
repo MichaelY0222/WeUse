@@ -46,7 +46,7 @@ Page({
 
   searchList: function(e) {
     let substringFilter = e.detail.value;
-    itemListFiltered = itemList.filter(item => item.name.includes(substringFilter));
+    itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(substringFilter.toLowerCase()));
     this.refreshList();
   },
 
