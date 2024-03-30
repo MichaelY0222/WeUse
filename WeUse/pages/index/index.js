@@ -26,6 +26,9 @@ Page({
       itemListOdd: itemList.filter((item, index) => index % 2 === 0),
       itemListEven: itemList.filter((item, index) => index % 2 === 1),
     })
+    this.setData({
+      itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length
+    })
   },
 
   scan: function (event) {
