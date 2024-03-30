@@ -14,7 +14,7 @@ Page({
     itemList: [],
     showDebugInfo: false,
     guestStatus: false,
-    gradeFilters: ['All','7','8','10','11','12'],
+    gradeFilters: ['All','1','7','8','10','11','12'],
     gradeFilterIndex: 0,
   },
 
@@ -66,11 +66,19 @@ Page({
       let end = parseInt(grades.substring(grades.indexOf('-')+1, grades.length));
       let output = ''
       for (let i = start; i < end; i++) {
-        output += i.toString();
+        if (i < 10){
+          output += "0";
+        }
+        output += i.toString() + "_";
       }  
+      console.log(output);
       return output;
     }
     else {
+      if (grades.length < 2)
+      {
+        return "0" + grades;
+      }
       return grades;
     }
   },
@@ -82,6 +90,10 @@ Page({
       itemListFiltered = itemList.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
     }
     let selectedGrade = this.data.gradeFilters[this.data.gradeFilterIndex];
+    if (selectedGrade.length<2) {
+      selectedGrade = "0" + selectedGrade;
+      console.log(selectedGrade);
+    }
     if (selectedGrade !== "All") {
       itemListFiltered = itemListFiltered.filter(item => this.fillInHyphen(item.grades).includes(selectedGrade));
     }
