@@ -131,21 +131,21 @@ Page({
         selectedGrade = "0" + selectedGrade;
       }
       if (selectedGrade !== "All") {
-        itemListFiltered = itemListFiltered.filter(item => this.fillInHyphen(item.grades).includes(selectedGrade));
+        itemListFiltered = itemListFiltered.filter(item => this.fillInHyphen(item.grades).includes(selectedGrade) || item.grades === 'All');
       }
     }
 
     let selectedSubject = this.data.subjectFilters[this.data.subjectFilterIndex];
     if (selectedSubject !== undefined) {
       if (selectedSubject !== "All") {
-        itemListFiltered = itemListFiltered.filter(item => item.subject.includes(selectedSubject));
+        itemListFiltered = itemListFiltered.filter(item => item.subject.includes(selectedSubject) || item.subject === 'All');
       }
     }
 
     let selectedLevel = this.data.levelFilters[this.data.levelFilterIndex];
     if (selectedLevel !== undefined) {
       if (selectedLevel !== "All") {
-        itemListFiltered = itemListFiltered.filter(item => this.underscorify(item.level).includes(selectedLevel+'_'));
+        itemListFiltered = itemListFiltered.filter(item => this.underscorify(item.level).includes(selectedLevel+'_') || item.level === 'All');
       }
     }
 
