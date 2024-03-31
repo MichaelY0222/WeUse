@@ -1,5 +1,6 @@
 <!--pages/me/me.wxml-->
 <view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/me/me.wxml</text>
   <view class="heading">
     <text>Me</text>

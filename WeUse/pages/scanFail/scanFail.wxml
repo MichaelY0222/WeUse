@@ -1,5 +1,6 @@
 <!--pages/scanFail/scanFail.wxml-->
 <view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/scanFail/scanFail.wxml</text>
   <view class="heading">Scan Failed</view>
   <view class="iconViewport">

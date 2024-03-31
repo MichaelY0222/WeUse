@@ -9,9 +9,7 @@
     "pages/logs/logs"
   ],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "WeUse",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationStyle": "custom"
   },
   "tabBar": {
     "color": "#333",

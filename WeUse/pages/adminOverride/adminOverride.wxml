@@ -1,10 +1,11 @@
 <!--pages/adminOverride/adminOverride.wxml-->
 <view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/adminOverride/adminOverride.wxml</text>
   <view class="heading">
     <text>Admin Override</text>
   </view>
-  <view hidden="{{loginStatus}}">
+  <view wx:if="{{!loginStatus}}">
     <view class="spacelast"></view>
     <input class="input" placeholder="Username" bindinput="onUsernameInput" value="{{ username }}">
       <image src="../../icons/scan.svg" class="iconField" bindtap="scan"></image>
@@ -16,9 +17,11 @@
     <view class="spacelast"></view>
     <button class="button" bindtap="onLogin">Login</button>
   </view>
-  <view hidden="{{!loginStatus}}">
+  <view wx:else>
     <view class="spacelast"></view>
     <switch class="switch" checked="{{showDebugInfo}}" bindchange="onDebugSwitch">Show Debug</switch>
+    <view class="space" hidden="{{!showDebugInfo}}"></view>
+    <button class="button" hidden="{{!showDebugInfo}}" bindtap="onViewLogs">View Logs</button>
     <view class="spacelast"></view>
     <button class="button" bindtap="logout">Admin Logout</button>
   </view>

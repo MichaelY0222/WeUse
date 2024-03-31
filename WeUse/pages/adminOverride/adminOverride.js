@@ -127,4 +127,10 @@ Page({
       loginStatus: false,
     })
   },
+
+  onViewLogs: function (event) {
+    wx.navigateTo({
+      url: '/pages/logs/logs',
+    })
+  },
 })

@@ -14,5 +14,11 @@ Page({
         }
       })
     })
-  }
+  },
+  clearLogs: function (event) {
+    wx.setStorageSync('logs', [])
+    this.setData({
+      logs: []
+    })
+  },
 })

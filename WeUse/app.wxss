@@ -122,5 +122,12 @@
 
 .lockIcon{
   width: 30vw;
-  height: 17vh;
+  height: 15vh;
+}
+
+.weUseLogo{
+  margin-top: 5.5vh;
+  margin-left: 10px;
+  width: 150px;
+  height: 50px;
 }

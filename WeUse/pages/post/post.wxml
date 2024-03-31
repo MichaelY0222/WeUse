@@ -1,5 +1,6 @@
 <!--pages/post/post.wxml-->
 <view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/post/post.wxml</text>
   <view class="heading">
     <text>Post</text>

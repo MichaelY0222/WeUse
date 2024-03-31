@@ -1,6 +1,13 @@
 <!--logs.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-  <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
-    <view class="log-item">{{index + 1}}. {{log.date}}</view>
-  </block>
-</scroll-view>
+<view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
+  <view class="heading">Logs</view>
+  <view class="space"></view>
+  <view class="subheading">MiniProgram Launch Timestamps</view>
+  <scroll-view class="scrollarea" scroll-y type="list">
+    <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
+      <view class="log-item">{{index + 1}}. {{log.date}}</view>
+    </block>
+    <button class="button" bindtap="clearLogs">Clear Timestamps</button>
+  </scroll-view>
+</view>
