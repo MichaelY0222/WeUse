@@ -2,6 +2,7 @@
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const itemList = require('../../itemList.js');
+const { join } = require('../../userCredentials.js');
 let itemListFiltered = itemList;
 
 Page({
@@ -109,6 +110,14 @@ Page({
     }
   },
 
+  underscorify: function (levels) {
+    if (levels.includes(', ')) {
+      levels = levels.split(', ');
+      levels = levels.join('_, ');
+    }
+    return levels + "_";
+  },
+
   filterList: function () {
     itemListFiltered = itemList;
     
@@ -136,7 +145,7 @@ Page({
     let selectedLevel = this.data.levelFilters[this.data.levelFilterIndex];
     if (selectedLevel !== undefined) {
       if (selectedLevel !== "All") {
-        itemListFiltered = itemListFiltered.filter(item => (item.level + '_').includes(selectedLevel+'_'));
+        itemListFiltered = itemListFiltered.filter(item => this.underscorify(item.level).includes(selectedLevel+'_'));
       }
     }
 
