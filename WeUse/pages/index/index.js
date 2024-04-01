@@ -56,7 +56,8 @@ Page({
       itemListEven: itemListFiltered.filter((item, index) => index % 2 === 1),
     })
     this.setData({
-      itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length
+      itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length,
+      noResults: !this.data.itemListOdd.length>0
     })
   },
 

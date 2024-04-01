@@ -25,6 +25,10 @@
     </view>
     <view class="smallSpace"></view>
     <scroll-view scroll-y="true" class="itemScroll">
+      <view wx:if="{{noResults}}">
+      <image class="noResultsImage" src="../../icons/results.png">
+      </image>
+      </view>
       <view wx:for="{{itemListEven}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
         <view class="item">
           <text class="itemText">{{itemListOdd[index].name}}</text>

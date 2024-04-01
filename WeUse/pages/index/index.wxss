@@ -68,3 +68,8 @@
 .smallSpace{
   height: 40px;
 }
+
+.noResultsImage{
+  height: 55vh;
+  width: 60vh;
+}
