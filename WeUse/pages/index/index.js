@@ -137,7 +137,7 @@ Page({
     let selectedSubject = this.data.subjectFilters[this.data.subjectFilterIndex];
     if (selectedSubject !== undefined) {
       if (selectedSubject !== "All") {
-        itemListFiltered = itemListFiltered.filter(item => item.subject.includes(selectedSubject) || item.subject === 'All');
+        itemListFiltered = itemListFiltered.filter(item => (item.subject+'_').includes(selectedSubject+'_') || item.subject === 'All');
       }
     }
 
