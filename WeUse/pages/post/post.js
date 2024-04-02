@@ -8,6 +8,7 @@ Page({
    */
   data: {
     showDebugInfo: false,
+    guestStatus: false,
   },
 
   /**
@@ -15,7 +16,8 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      showDebugInfo: wx.getStorageSync('showDebug')
+      showDebugInfo: wx.getStorageSync('showDebug'),
+      guestStatus: wx.getStorageSync('guestStatus'),
     })
   },
 
@@ -45,6 +47,12 @@ Page({
                 });
               }
         },
+    });
+  },
+
+  guestLogin: function (e) {
+    wx.reLaunch({
+      url: '/pages/registration/registration',
     });
   },
 })
