@@ -7,4 +7,5 @@
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
+  <text class="footnotes" bindtap="adminOverride">Version 1.0</text>
 </view>

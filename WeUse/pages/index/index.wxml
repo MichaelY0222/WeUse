@@ -25,9 +25,12 @@
     </view>
     <view class="smallSpace"></view>
     <scroll-view scroll-y="true" class="itemScroll">
-      <view wx:if="{{noResults}}">
+      <view wx:if="{{noResults}}" class="container">
       <image class="noResultsImage" src="../../icons/results.png">
       </image>
+      <text class="subtextBlue">No results are found with the applied filters. Please try using different filters or click Clear Filters.</text>
+      <view class="spacelast"></view>
+      <button class="button" bindtap="clearFilters">Clear Filters</button>
       </view>
       <view wx:for="{{itemListEven}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
         <view class="item">
@@ -68,7 +71,6 @@
     <view class="spacelast"></view>
     <button class="button" bindtap="guestLogin">Login</button>
   </view>
-  <text class="footnotes" bindtap="adminOverride">Version 1.0</text>
   <!--view style="position: relative; width: 352rpx; background: #d3d3d3; height: 455rpx; left: 24rpx; top: 42rpx; display: grid; box-sizing: border-box">
         <image style="position: relative; width: 352rpx; height: 292rpx; display: inline-block; box-sizing: border-box; left: 0rpx; top: 44rpx" src="/images/CASIO fx-991CN X.png">
             <text style="position:relative;">文本内容...</text>

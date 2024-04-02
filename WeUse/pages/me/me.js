@@ -7,6 +7,8 @@ Page({
    * Page initial data
    */
   data: {
+    clickCountTop: 0,
+    resetTimerTop: null,
     showDebugInfo: false,
   },
 
@@ -46,5 +48,45 @@ Page({
               }
         },
     });
+  },
+
+  adminOverride: function () {
+    const { clickCountTop, resetTimerTop } = this.data;
+
+    // If there's an existing reset timer, clear it
+    if (resetTimerTop) {
+      clearTimeout(resetTimerTop);
+    }
+
+    // Increment the click count
+    const newClickCount = clickCountTop + 1;
+    this.setData({
+      clickCountTop: newClickCount,
+    });
+
+    // Check if the click count reaches 5
+    if (newClickCount === 5) {
+      // Navigate to the new page
+      wx.reLaunch({
+        url: '/pages/adminOverride/adminOverride',
+      });
+
+      // Reset the click count to 0
+      this.setData({
+        clickCountTop: 0,
+      });
+    } else {
+      // Set a timer to reset the click count after 2 seconds of inactivity
+      const newResetTimer = setTimeout(() => {
+        this.setData({
+          clickCountTop: 0, // Reset the click count
+        });
+      }, 2000); // 2000 milliseconds = 2 seconds
+
+      // Update the reset timer variable
+      this.setData({
+        resetTimerTop: newResetTimer,
+      });
+    }
   },
 })
