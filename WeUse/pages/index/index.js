@@ -12,7 +12,6 @@ Page({
   data: {
     itemList: [],
     showDebugInfo: false,
-    guestStatus: false,
     gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     gradeFilterIndex: 0,
     subjectFilters: ['All'],
@@ -28,7 +27,6 @@ Page({
     this.setData({
       itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),
-      guestStatus: wx.getStorageSync('guestStatus'),
     })
     this.setData({
       itemListOdd: itemList.filter((item, index) => index % 2 === 0),
@@ -177,12 +175,6 @@ Page({
                 });
               }
         },
-    });
-  },
-
-  guestLogin: function (e) {
-    wx.reLaunch({
-      url: '/pages/registration/registration',
     });
   },
 
