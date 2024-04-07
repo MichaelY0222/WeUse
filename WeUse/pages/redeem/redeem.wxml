@@ -1,0 +1,19 @@
+<!--pages/redeem/redeem.wxml-->
+<view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
+  <text hidden="{{!showDebugInfo}}">pages/redeem/redeem.wxml</text>
+  <text hidden="{{!showDebugInfo}}">Sent Item ID: {{itemId}}</text>
+  <view class="heading">
+    <text>Redeem</text>
+    <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
+  </view>
+  <view class="spacelast"></view>
+  <view wx:if="{{guestStatus}}">
+  </view>
+  <view wx:else class="container">
+    <image src="../../icons/lock.png" class="lockIcon"></image>
+    <text class="subheading">Login is required to use this service</text>
+    <view class="spacelast"></view>
+    <button class="button" bindtap="guestLogin">Login</button>
+  </view>
+</view>

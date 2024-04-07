@@ -186,4 +186,11 @@ Page({
     })
     this.filterList();
   },
+
+  redeem: function (event) {
+    const itemId = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: `/pages/redeem/redeem?id=${itemId}`,
+    });
+  }
 })
