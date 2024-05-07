@@ -61,7 +61,7 @@ Page({
   },
   home: function (e) {
     wx.reLaunch({
-      url: '/pages/home/home',
+      url: '/pages/index/index',
     });
   },
 })

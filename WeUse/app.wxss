@@ -130,6 +130,15 @@
   margin-left: 10px;
   width: 150px;
   height: 50px;
+  position: relative;
+  left: 227rpx;
+  top: 20rpx;
+}
+
+.weUseSlogan{
+  position: relative;
+  left: 227rpx;
+  top: -49rpx;
 }
 
 .footnotes{

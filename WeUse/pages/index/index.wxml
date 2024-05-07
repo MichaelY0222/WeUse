@@ -1,14 +1,14 @@
 <!--pages/index/index.wxml-->
 <view class="page">
-  <image src="../../icons/logo.svg" class="weUseLogo" style="position: relative; left: 227rpx; top: 20rpx"></image>
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/index/index.wxml</text>
   <view class="heading">
-    <text style="position: relative; left: 227rpx; top: -49rpx">Let's reuse!</text>
+    <text class="weUseSlogan">Let's reuse!</text>
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan" style="position: relative; left: -616rpx; top: -90rpx"></image>
   </view>
   <view class="spacelast"></view>
-    <input style="position: relative; left: -4rpx; top: -92rpx" class="search" placeholder="Search" type="text" bindinput="bindSearchList"/>
-    <view style="display: flex; flex-direction: row; align-items: center; position: relative; left: 0rpx; top: -86rpx">
+    <input class="search" placeholder="Search" type="text" bindinput="bindSearchList"/>
+    <view class="filterView">
       <text class='filterText' style="margin-left:20px;">
       Filters: 
       </text>
