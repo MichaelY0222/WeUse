@@ -59,4 +59,9 @@ Page({
       url: '/pages/registration/registration',
     });
   },
+  home: function (e) {
+    wx.reLaunch({
+      url: '/pages/home/home',
+    });
+  },
 })

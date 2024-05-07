@@ -15,5 +15,7 @@
     <text class="subheading">Login is required to use this service</text>
     <view class="spacelast"></view>
     <button class="button" bindtap="guestLogin">Login</button>
+    <view class="spacelast"></view>
+    <button class="button" bindtap="home">Return to Home</button>
   </view>
 </view>
