@@ -16,6 +16,10 @@
   top: -92rpx;
 }
 
+.heading{
+  padding-bottom: 40px;
+}
+
 .itemRow{
   display: flex;
   flex-direction: row;
@@ -31,7 +35,7 @@
 }
 
 .itemScroll{
-  height: 65vh;
+  height: 77vh;
 }
 
 .itemText{
@@ -66,10 +70,6 @@
   width: 20vw;
   height: 1vh;
   margin-top: -40px;
-}
-
-.smallSpace{
-  height: 40px;
 }
 
 .noResultsImage{

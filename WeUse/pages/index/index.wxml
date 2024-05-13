@@ -1,10 +1,10 @@
 <!--pages/index/index.wxml-->
 <view class="page">
-  <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/index/index.wxml</text>
   <view class="heading">
-    <text class="weUseSlogan">Let's reuse!</text>
-    <image src="../../icons/scan.svg" class="iconscan" bindtap="scan" style="position: relative; left: -616rpx; top: -90rpx"></image>
+    <image src="../../icons/logo.svg" class="weUseLogo"></image>
+    <!--text class="weUseSlogan">Let's reuse!</text-->
+    <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
     <input class="search" placeholder="Search" type="text" bindinput="bindSearchList"/>
@@ -22,7 +22,6 @@
       Level: {{levelFilters[levelFilterIndex]}}
       </picker>
     </view>
-    <view class="smallSpace"></view>
     <scroll-view scroll-y="true" class="itemScroll">
       <view wx:if="{{noResults}}" class="container">
       <image class="noResultsImage" src="../../icons/results.png">

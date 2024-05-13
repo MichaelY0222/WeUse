@@ -10,7 +10,10 @@
     "pages/logs/logs"
   ],
   "window": {
-    "navigationStyle": "custom"
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "WeUse",
+    "navigationBarTextStyle":"black"
   },
   "tabBar": {
     "color": "#333",
