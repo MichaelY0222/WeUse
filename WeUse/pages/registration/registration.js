@@ -123,6 +123,21 @@ Page({
       url: '/pages/index/index',
     })
   },
+//Temporary
+  SSOLogin: function (event) {
+    wx.navigateToMiniProgram({
+      appId: 'wx26508bde5a4f3f89',
+    });
+    wx.setStorageSync('guestStatus', true)
+        wx.showToast({
+          title: 'Success',
+          icon: 'success',
+        });
+        wx.reLaunch({
+          url: '/pages/index/index',
+        })
+  },
+  //End Temporary
 
   help: function (event) {
     wx.showModal({
