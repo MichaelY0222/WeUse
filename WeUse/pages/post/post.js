@@ -1,14 +1,24 @@
 // pages/post/post.js
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
+const itemList = require('../../itemList.js');
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    itemList: [],
     showDebugInfo: false,
     guestStatus: false,
+    grades: ['All','1','2','3','4','5','6','7','8','10','11','12'],
+    subjects: ['All'],
+    levels: ['All', 'S', 'S+', 'H', 'H+'],
+    locations: ['ZXB中興樓', 'ZTB甄陶樓', 'LMB龍門樓'],
+    selectedGrade: 0,
+    selectedSubject: 0,
+    selectedLevel: 0,
+    selectedLocation: 0
   },
 
   /**
@@ -16,8 +26,19 @@ Page({
    */
   onLoad(options) {
     this.setData({
+      itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),
       guestStatus: wx.getStorageSync('guestStatus'),
+    })
+
+    let tempList = [];
+    for (let i = 0; i < itemList.length; i++) {
+      if (!tempList.includes(itemList[i].subject)) {
+        tempList.push(itemList[i].subject);
+      }
+    }
+    this.setData({
+      subjects: this.data.subjects.concat(tempList.sort())
     })
   },
 
@@ -54,5 +75,54 @@ Page({
     wx.reLaunch({
       url: '/pages/registration/registration',
     });
+  },
+
+  bindGradeChange: function(e) {
+    this.setData({
+      selectedGrade: e.detail.value
+    });
+    console.log("Selected Grade", this.data.grades[this.data.selectedGrade]);
+  },
+
+  bindSubjectChange: function(e) {
+    this.setData({
+      selectedSubject: e.detail.value
+    });
+    console.log("Selected Subject", this.data.subjects[this.data.selectedSubject]);
+  },
+
+  bindLevelChange: function(e) {
+    this.setData({
+      selectedLevel: e.detail.value
+    });
+    console.log("Selected Level", this.data.levels[this.data.selectedLevel]);
+  },
+
+  bindLocationChange: function(e) {
+    this.setData({
+      selectedLocation: e.detail.value
+    });
+    console.log("Selected Location", this.data.locations[this.data.selectedLocation]);
+  },
+
+  uploadImage: function() {
+    console.log("UPLOAD")
+    // Function to handle image upload
+  },
+
+  postItem: function() {
+    console.log("POST")
+    // Function to handle posting the item
+  },
+
+  // Empty functions for input detection
+  onItemNameInput: function(event) {
+    var objectName = event.detail.value;
+    console.log("Name is " + objectName);
+  },
+
+  onPriceInput: function(event) {
+    var objectPrice = event.detail.value;
+    console.log("Price is ¥" + objectPrice);
   },
 })

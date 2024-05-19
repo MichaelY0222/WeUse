@@ -8,6 +8,73 @@
   </view>
   <view class="spacelast"></view>
   <view wx:if="{{guestStatus}}">
+  <view class="form-section">
+    <view class="form-item">
+      <text class="label">Insert item name</text>
+      <input class="input" placeholder="Enter item name" bindinput="onItemNameInput"/>
+    </view>
+
+    <view class="form-item">
+      <text class="label">Add up to 3 images</text>
+      <view class="image-upload">
+        <image src="/images/pencil_photo.png" class="image-placeholder"/>
+        <button class="upload-button" bindtap="uploadImage">+</button>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="label">Grade</text>
+      <picker class="picker" mode="selector" range="{{grades}}" value="{{selectedGrade}}" bindchange="bindGradeChange">
+        <view class="picker-view">
+          {{grades[selectedGrade]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">Subject</text>
+      <picker class="picker" mode="selector" range="{{subjects}}" value="{{selectedSubject}}" bindchange="bindSubjectChange">
+        <view class="picker-view">
+          {{subjects[selectedSubject]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">Level</text>
+      <picker class="picker" mode="selector" range="{{levels}}" value="{{selectedLevel}}" bindchange="bindLevelChange">
+        <view class="picker-view">
+          {{levels[selectedLevel]}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-item">
+      <text class="label">Set a price</text>
+      <view class="text_input">
+        <text class="label_text">
+          ¥
+        </text>
+        <input class="input" type="number" placeholder="Enter price" bindinput="onPriceInput"/>
+      </view>
+    </view>
+
+    <view class="form-item">
+      <text class="label">Select your drop-off location</text>
+      <picker class="picker" mode="selector" range="{{locations}}" value="{{selectedLocation}}" bindchange="bindLocationChange">
+        <view class="picker-view">
+          {{locations[selectedLocation]}}
+        </view>
+      </picker>
+    </view>
+    
+    <view class="info-text">
+      <text>You chose to drop-off your item at {{locations[selectedLocation]}}, please send your item to the first floor locker area this week.</text>
+    </view>
+
+    <button class="post-button" bindtap="postItem">POST!</button>
+  </view>
+
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>

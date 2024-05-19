@@ -1,1 +1,114 @@
 /* pages/post/post.wxss */
+/* app.wxss */
+.container {
+  padding: 20rpx;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+}
+
+.form-section {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.label {
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+
+.input {
+  width: 90%;
+  padding: 10rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 5rpx;
+}
+
+.image-upload {
+  display: flex;
+  align-items: center;
+}
+
+.image-placeholder {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 10rpx;
+}
+
+.upload-button {
+  width: 100rpx;
+  height: 100rpx;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  color: #aaa;
+  border: 1rpx dashed #ccc;
+  border-radius: 5rpx;
+}
+
+.picker {
+  width: 100%;
+}
+
+.picker-view {
+  padding: 10rpx;
+  border: 1rpx solid #ccc;
+  border-radius: 5rpx;
+}
+
+.info-text {
+  margin: 20rpx 0;
+  font-size: 24rpx;
+  color: #555;
+}
+
+.post-button {
+  width: 100%;
+  padding: 15rpx;
+  background-color: gold;
+  text-align: center;
+  font-size: 36rpx;
+  color: #000;
+  border-radius: 10rpx;
+  font-weight: bold;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30rpx;
+}
+
+.nav-item {
+  text-align: center;
+}
+
+.text_input {
+  display: flex;
+  text-align:start;
+  align-items: flex-start;
+}
+
+.label_text {
+  font-size: 60rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 40rpx;
+  margin-bottom: -40rpx;
+}
