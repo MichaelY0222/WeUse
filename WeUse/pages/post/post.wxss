@@ -1,9 +1,4 @@
 /* pages/post/post.wxss */
-/* app.wxss */
-.container {
-  padding: 20rpx;
-}
-
 .header {
   text-align: center;
   margin-bottom: 20rpx;
