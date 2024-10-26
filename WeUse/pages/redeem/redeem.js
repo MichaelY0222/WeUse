@@ -17,11 +17,16 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad(options) {
-    const itemId = options.itemId || 0;
+    //const itemId = options.itemId || 0;
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('itemId', (res) => {
+        this.setData({
+          itemId: res,
+        });
+    });
     this.setData({
       showDebugInfo: wx.getStorageSync('showDebug'),
       guestStatus: wx.getStorageSync('guestStatus'),
-      itemId: itemId,
     })
   },
 
