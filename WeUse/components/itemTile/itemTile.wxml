@@ -1,0 +1,9 @@
+<view class="itemTileBox">
+  <text class="itemTileName">{{name}}</text>
+  <image class="itemTileImage" src="{{image}}"></image>
+  <text class="itemTileText">Available: {{quantity}}\n</text>
+  <text class="itemTileText">Grades: {{grades}}\n</text>
+  <text class="itemTileText">Subject: {{subject}}\n</text>
+  <text class="itemTileText">Level: {{level}}\n</text>
+  <text class="itemTileText">Stamps: {{stamps}}</text>
+</view>

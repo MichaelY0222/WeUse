@@ -181,10 +181,11 @@ Page({
   },
 
   redeem: function (x) {
+    console.log(x.currentTarget.dataset.id);
     wx.navigateTo({
       url: '/pages/redeem/redeem',
       success: (res) => {
-        res.eventChannel.emit("itemId", x.currentTarget.dataset.itemid);
+        res.eventChannel.emit("itemId", x.currentTarget.dataset.id);
       }
     });
   }
