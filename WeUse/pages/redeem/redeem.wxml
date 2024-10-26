@@ -9,6 +9,34 @@
   </view>
   <view class="spacelast"></view>
   <view wx:if="{{guestStatus}}">
+    <view class="card">
+    <image class="item-image" mode="aspectFill"></image>
+    <view class="price-tag">
+      <text class="price-text">¥ 250</text>
+    </view>
+    <view class="item-info">
+      <view class="seller-info">
+        <image class="profile-pic" mode="aspectFill"></image>
+        <view class="verified-seller">
+          <text class="verified-text">✔ Verified Seller</text>
+          <text class="seller-name">Joe M.</text>
+          <text class="seller-role">Parent 家长</text>
+        </view>
+      </view>
+      <view class="item-details">
+        <text class="item-name">Name of item 物品名称</text>
+        <text class="item-description">Description</text>
+      </view>
+      <view class="additional-info">
+        <text class="info-title">Grade(s) 适用年级</text>
+        <text class="info-content">6, 9, 10, 11</text>
+        <text class="info-title">Subject(s) 适用科目</text>
+        <text class="info-content">English, 语文, Geography</text>
+        <text class="info-title">Level(s)适用水平</text>
+        <text class="info-content">S, S+, H</text>
+      </view>
+    </view>
+  </view>
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>

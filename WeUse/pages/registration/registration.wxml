@@ -21,7 +21,7 @@
   <view class="spacelast"></view>
   <button class="button" bindtap="onVerify">Verify</button>
   <view class="spacelast"></view>
-  <button class="button" bindtap="SSOLogin">Verify On one.shs.cn</button>
-  <view class="spacelast"></view>
+  <!--button class="button" bindtap="SSOLogin">Verify On one.shs.cn</button>
+  <view class="spacelast"></view-->
   <button class="button" bindtap="home">Return to Home</button>
 </view>
