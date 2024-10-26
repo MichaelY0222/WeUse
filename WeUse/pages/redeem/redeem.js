@@ -10,7 +10,7 @@ Page({
   data: {
     showDebugInfo: false,
     guestStatus: false,
-    itemId: 0,
+    itemIndex: "",
   },
 
   /**
@@ -19,10 +19,14 @@ Page({
   onLoad(options) {
     //const itemId = options.itemId || 0;
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('itemId', (res) => {
-        this.setData({
-          itemId: res,
-        });
+    
+    eventChannel.on('itemId', (res) => { // PROMISE
+      console.log(res);
+      this.setData({
+        itemIndex: res,
+      });
+      console.log(this.data.itemIndex);
+      console.log(itemList[this.data.itemIndex].name)
     });
     this.setData({
       showDebugInfo: wx.getStorageSync('showDebug'),
