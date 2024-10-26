@@ -187,10 +187,12 @@ Page({
     this.filterList();
   },
 
-  redeem: function (event) {
-    const itemId = event.currentTarget.dataset.id;
+  redeem: function (x) {
     wx.navigateTo({
-      url: `/pages/redeem/redeem?id=${itemId}`,
+      url: '/pages/redeem/redeem',
+      success: (res) => {
+        res.eventChannel.emit("itemId", x.currentTarget.dataset.itemid);
+      }
     });
   }
 })
