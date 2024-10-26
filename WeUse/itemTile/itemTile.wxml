@@ -1,0 +1,11 @@
+<view wx:for="{{filteredItemList}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
+        <view class="item" bindtap="redeem" data-item-id="{{ item.id }}">
+          <text class="itemText">{{item.name}}</text>
+          <image class="itemImage" src="{{item.imgUrl}}"></image>
+          <text class="itemText">Available: {{item.quantity}}\n</text>
+          <text class="itemText">Grades: {{item.grades}}\n</text>
+          <text class="itemText">Subject: {{item.subject}}\n</text>
+          <text class="itemText">Level: {{itemListEven[index].level}}\n</text>
+          <text class="itemText">Stamps: {{item.stamps}}</text>
+        </view>
+      </view>
