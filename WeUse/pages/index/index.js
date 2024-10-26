@@ -10,7 +10,7 @@ Page({
    * Page initial data
    */
   data: {
-    itemList: [],
+    filteredItemList:itemList,
     showDebugInfo: false,
     gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     gradeFilterIndex: 0,
@@ -28,32 +28,23 @@ Page({
       itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),
     })
-    this.setData({
-      itemListOdd: itemList.filter((item, index) => index % 2 === 0),
-      itemListEven: itemList.filter((item, index) => index % 2 === 1),
-    })
-    this.setData({
-      itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length
-    })
     let tempList = [];
     for (let i = 0; i < itemList.length; i++) {
       if (!tempList.includes(itemList[i].subject)) {
         tempList.push(itemList[i].subject);
       }
     }
+    
     this.setData({
       subjectFilters: this.data.subjectFilters.concat(tempList.sort())
     })
+    this.refreshList()
   },
 
   refreshList: function () {
     this.setData({
-      itemListOdd: itemListFiltered.filter((item, index) => index % 2 === 0),
-      itemListEven: itemListFiltered.filter((item, index) => index % 2 === 1),
-    })
-    this.setData({
-      itemListsLengthDifferent: this.data.itemListOdd.length !== this.data.itemListEven.length,
-      noResults: !this.data.itemListOdd.length>0
+      itemListsLengthDifferent: this.data.filteredItemList.length%2 == 1,
+      noResults: !this.data.filteredItemList.length>0
     })
   },
 
@@ -145,7 +136,9 @@ Page({
         itemListFiltered = itemListFiltered.filter(item => this.underscorify(item.level).includes(selectedLevel+'_') || item.level === 'All');
       }
     }
-
+    this.setData({
+      filteredItemList: itemListFiltered
+    })
     this.refreshList();
   },
 

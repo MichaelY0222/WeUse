@@ -30,17 +30,8 @@
       <view class="spacelast"></view>
       <button class="button" bindtap="clearFilters">Clear Filters</button>
       </view>
-      <view wx:for="{{itemListEven}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
-        <view class="item" bindtap="redeem" data-itemid="{{index}}">
-          <text class="itemText">{{itemListOdd[index].name}}</text>
-          <image class="itemImage" src="{{itemListOdd[index].imgUrl}}"></image>
-          <text class="itemText">Available: {{itemListOdd[index].quantity}}\n</text>
-          <text class="itemText">Grades: {{itemListOdd[index].grades}}\n</text>
-          <text class="itemText">Subject: {{itemListOdd[index].subject}}\n</text>
-          <text class="itemText">Level: {{itemListOdd[index].level}}\n</text>
-          <text class="itemText">Stamps: {{itemListOdd[index].stamps}}</text>
-        </view>
-        <view class="item">
+      <view wx:for="{{filteredItemList}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
+        <view class="item" bindtap="redeem" data-itemid="{{ index }}">
           <text class="itemText">{{item.name}}</text>
           <image class="itemImage" src="{{item.imgUrl}}"></image>
           <text class="itemText">Available: {{item.quantity}}\n</text>
@@ -48,17 +39,6 @@
           <text class="itemText">Subject: {{item.subject}}\n</text>
           <text class="itemText">Level: {{itemListEven[index].level}}\n</text>
           <text class="itemText">Stamps: {{item.stamps}}</text>
-        </view>
-      </view>
-      <view class="itemRow" wx:if="{{itemListsLengthDifferent}}">
-        <view class="item">
-          <text class="itemText">{{itemListOdd[itemListOdd.length-1].name}}</text>
-          <image class="itemImage" src="{{itemListOdd[itemListOdd.length-1].imgUrl}}"></image>
-          <text class="itemText">Available: {{itemListOdd[itemListOdd.length-1].quantity}}\n</text>
-          <text class="itemText">Grades: {{itemListOdd[itemListOdd.length-1].grades}}\n</text>
-          <text class="itemText">Subject: {{itemListOdd[itemListOdd.length-1].subject}}\n</text>
-          <text class="itemText">Level: {{itemListOdd[itemListOdd.length-1].level}}\n</text>
-          <text class="itemText">Stamps: {{itemListOdd[itemListOdd.length-1].stamps}}</text>
         </view>
       </view>
     </scroll-view>
