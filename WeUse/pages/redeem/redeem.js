@@ -11,6 +11,7 @@ Page({
     showDebugInfo: false,
     guestStatus: false,
     itemIndex: "",
+    itemList: itemList,
   },
 
   /**
@@ -26,7 +27,7 @@ Page({
         itemIndex: res,
       });
       console.log(this.data.itemIndex);
-      console.log(itemList[this.data.itemIndex].name)
+      console.log(this.data.itemList[this.data.itemIndex].name)
     });
     this.setData({
       showDebugInfo: wx.getStorageSync('showDebug'),
