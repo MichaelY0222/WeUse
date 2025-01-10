@@ -14,6 +14,16 @@ Page({
     itemList: itemList,
   },
 
+  onBuyClick: function() {
+    console.log('Buy Button clicked!');
+    // Add your functionality here, e.g., navigate to another page
+  },
+
+  onLikeClick: function() {
+    console.log('Like Button clicked!');
+    // Add your functionality here, e.g., navigate to another page
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
@@ -75,3 +85,4 @@ Page({
     });
   },
 })
+
