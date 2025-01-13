@@ -11,7 +11,7 @@ Component({
     },
 
     image: {
-      type:String,
+      type:Array,
       value:"https://th.bing.com/th/id/R.51879f9aeaaf6060aa42a64df71696f1?rik=h8Ox9c2rUwGi%2fg&pid=ImgRaw&r=0"
     },
     quantity: {

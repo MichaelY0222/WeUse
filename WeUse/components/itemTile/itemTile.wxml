@@ -1,6 +1,6 @@
 <view class="itemTileBox">
   <text class="itemTileName">{{name}}</text>
-  <image class="itemTileImage" src="{{image}}"></image>
+  <image class="itemTileImage" src="{{image[0]}}"></image>
   <text class="itemTileText">Available: {{quantity}}\n</text>
   <text class="itemTileText">Grades: {{grades}}\n</text>
   <text class="itemTileText">Subject: {{subject}}\n</text>

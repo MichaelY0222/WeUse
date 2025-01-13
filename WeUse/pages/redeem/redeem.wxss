@@ -8,11 +8,17 @@
   box-shadow: 0 8rpx 16rpx rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
-.item-image {
-  width:675rpx;
-  height:675rpx;
+.image-scroll {
+  width: 675rpx; 
+  height: 675rpx;
+  display:flex;
+  white-space: nowrap;
+  overflow-x: scroll;
 }
-
+.image {
+  width: 675rpx;
+  height: 675rpx;
+}
 .price-tag {
   position: absolute;
   top: 930rpx;
@@ -25,7 +31,6 @@
   width: 260rpx;
   height:100rpx;
 }
-
 .price-image{
   position: absolute;
   top: 0;
@@ -38,7 +43,7 @@
 }
 .image-number {
   position: relative;
-  z-index: 2;
+  z-index: 1;
   top: -70rpx;
   font-size: 28rpx;
   left: 280rpx;
@@ -63,11 +68,9 @@
 .green-text {
   color: #93BF66;
 }
-
 .yellow-text {
   color: #EBC542;
 }
-
 .seller-info {
   position:relative;
   display: flex;
@@ -94,7 +97,7 @@
   position: relative;
 }
 .seller-name {
-  font-size: 20rpx;
+  font-size: 24rpx;
   font-weight: bold;
   position: relative;
   left: 100rpx;
@@ -103,15 +106,15 @@
   width: 160rpx;
 }
 .seller-role {
-  font-size: 20rpx;
+  font-size: 24rpx;
+  color:white;
   font-weight: bold;
   position: relative;
-  left: 100rpx;
-  background-color: yellow;
-  border: yellow;
+  left: 75rpx;
+  background-color: #FFD600;
   height: 40rpx;
-  padding-top: 10rpx;
-  padding-left: 20rpx;
+  padding-top: 8rpx;
+  padding-left: 45rpx;
   text-align: justify;
   border-radius: 100rpx;
   width: 160rpx;
@@ -119,21 +122,17 @@
 .item-details {
   margin-top: 20rpx;
 }
-
 .horizontal-line {
   width: 88%;  /* Full width */
   height: 1px;  /* Line thickness */
   background-color: grey;  /* Grey color */
   margin: 10rpx 40rpx -40rpx;  /* Optional: Adds space above and below the line */
 }
-
-
 .item-name {
   font-size: 42rpx;
   font-weight: bold;
   margin-left: 60rpx;
   margin-right: 60rpx;
-
   display: -webkit-box; /* Display as a flexbox for the clamp to work */
   overflow: hidden; /* Ensure content outside the box is hidden */
   -webkit-line-clamp: 2; /* Limit to 2 lines */
@@ -141,7 +140,6 @@
   word-wrap: break-word; /* Ensure long words break to the next line */
   text-overflow: ellipsis; /* Add ellipsis for overflow */
 }
-
 .additional-info {
   margin-top: 20rpx;
   display: flex;
@@ -165,16 +163,13 @@
   margin-left: 80rpx;
   margin-right: 80rpx;
 }
-
 .buttonWithImage {
   background: transparent;
   max-width: 320rpx;
   height: 140rpx;
   padding: 0; /* Remove padding */
 }
-
 .buttonImageBackground {
-
   position: absolute;
   top: 0;
   left: 0;
@@ -184,23 +179,19 @@
   height: 100%;
   object-fit: cover; /* Ensure the image covers the entire button */
 }
-
 .buttonWithImage:active {
   transform: scale(0.95);
 }
-
 .likebutton {
   position: fixed;
   left: 40rpx;
   bottom: 20rpx;
 }
-
 .buybutton {
   position: fixed;
   right: 40rpx;
   bottom: 20rpx;
 }
-
 .bottomcontainer {
   background-color: #FFFFFF;
   content:"aa";
@@ -209,4 +200,5 @@
   position: fixed;
   bottom: 0rpx;
   left:0;
+  z-index:2;
 }

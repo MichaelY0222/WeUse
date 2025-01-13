@@ -10,49 +10,50 @@
   <view class="spacelast"></view>
   <view wx:if="{{guestStatus}}">
     <view class="card">
-    <image class="item-image" mode="scaleToFill" src="{{itemList[itemIndex].imgUrl}}"></image>
-    <view class="image-number">1/3</view>
-    <view class="price-tag">
-      <image class="price-image" src="/images/price.png"></image>
-      <text class="price-text">{{itemList[itemIndex].stamps}}</text>
-      
-    </view>
+        <scroll-view class="image-scroll" scroll-x="true" bindscroll="onScroll">
+          <image class="image" wx:for="{{itemList[itemIndex].imgUrl}}" wx:key="index" src="{{itemList[itemIndex].imgUrl[index]}}" mode="scaleToFill"></image>
+        </scroll-view>
+        <view class="image-number">{{currentImageDisplayIndex}}/{{itemList[itemIndex].imgUrl.length}}</view>
+        <view class="price-tag">
+          <image class="price-image" src="/images/price.png"></image>
+          <text class="price-text">{{itemList[itemIndex].stamps}}</text>
+        </view>
 
-    <view class="item-info">
-      <view class="seller-info">
-        <image class="profile-pic" mode="aspectFill" src="/images/profilepic.png"></image>
-        <view class="verified-seller">
-          <text class="verified-text">✔ Verified Seller 合格卖家</text>
-          <text class="seller-name">Joe M.</text>
-          <text class="seller-role">Parent 家长</text>
+      <view class="item-info">
+        <view class="seller-info">
+          <image class="profile-pic" mode="aspectFill" src="/images/profilepic.png"></image>
+          <view class="verified-seller">
+            <text class="verified-text">✔ Verified Seller 合格卖家</text>
+            <text class="seller-name">Joe M.</text>
+            <text class="seller-role">Parent 家长</text>
+          </view>
+        </view>
+        <view class="item-details">
+          <text class="item-name">{{itemList[itemIndex].name}} [max 2 lines of txt blah blah blah blah blah]</text>
+        </view>
+        <view class="additional-info">
+          <text class="info-title">Grade(s) 适用年级</text>
+          <text class="info-content yellow-text">{{itemList[itemIndex].grades}}</text>
+          <text class="info-title">Subject(s) 适用科目</text>
+          <text class="info-content yellow-text">{{itemList[itemIndex].subject}}</text>
+          <text class="info-title">Level(s)适用水平</text>
+          <text class="info-content yellow-text">{{itemList[itemIndex].level}}</text>
+          <view class="horizontal-line"></view>
+          <text class="info-title">\nDescription 物品介绍</text>
+          <text class="item-description green-text">{{itemList[itemIndex].description}} [This is a sample description. Blahblahblah非常好用
+          (we can let ppl scroll down)]
+          \n\n\n\n\n\n\n</text>
         </view>
       </view>
-      <view class="item-details">
-        <text class="item-name">{{itemList[itemIndex].name}} [max 2 lines of txt blah blah blah blah blah]</text>
-      </view>
-      <view class="additional-info">
-        <text class="info-title">Grade(s) 适用年级</text>
-        <text class="info-content yellow-text">{{itemList[itemIndex].grades}}</text>
-        <text class="info-title">Subject(s) 适用科目</text>
-        <text class="info-content yellow-text">{{itemList[itemIndex].subject}}</text>
-        <text class="info-title">Level(s)适用水平</text>
-        <text class="info-content yellow-text">{{itemList[itemIndex].level}}</text>
-        <view class="horizontal-line"></view>
-        <text class="info-title">\nDescription 物品介绍</text>
-        <text class="item-description green-text">{{itemList[itemIndex].description}} [This is a sample description. Blahblahblah非常好用
-        (we can let ppl scroll down)]
-        \n\n\n\n\n\n\n</text>
-      </view>
+      <div class="bottomcontainer">
+        <button class="likebutton buttonWithImage" bindtap="onLikeClick">
+          <image class="buttonImageBackground" src="/images/likebutton.png" />
+        </button>
+        <button class="buybutton buttonWithImage" bindtap="onBuyClick">
+          <image class="buttonImageBackground" src="/images/buybutton.png" />
+        </button>
+      </div>
     </view>
-    <div class="bottomcontainer">
-      <button class="likebutton buttonWithImage" bindtap="onLikeClick">
-        <image class="buttonImageBackground" src="/images/likebutton.png" />
-      </button>
-      <button class="buybutton buttonWithImage" bindtap="onBuyClick">
-        <image class="buttonImageBackground" src="/images/buybutton.png" />
-      </button>
-    </div>
-  </view>
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>

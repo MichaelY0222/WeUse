@@ -12,6 +12,15 @@ Page({
     guestStatus: false,
     itemIndex: "",
     itemList: itemList,
+    currentImageDisplayIndex: 1,
+  },
+
+  onScroll: function(e) {
+    const currentScrollPosition = e.detail.scrollLeft; // Get the current scroll position
+    const currentScrollPositionRpx = (currentScrollPosition / wx.getSystemInfoSync().screenWidth) * 750;
+    this.setData({
+      currentImageDisplayIndex: Math.floor((currentScrollPositionRpx+337.5)/675) + 1
+    });
   },
 
   onBuyClick: function() {
