@@ -39,7 +39,6 @@ Page({
   onLoad(options) {
     //const itemId = options.itemId || 0;
     const eventChannel = this.getOpenerEventChannel();
-    
     eventChannel.on('itemId', (res) => { // PROMISE
       console.log(res);
       this.setData({

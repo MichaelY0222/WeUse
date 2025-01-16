@@ -1,9 +1,18 @@
-<view class="itemTileBox">
-  <text class="itemTileName">{{name}}</text>
-  <image class="itemTileImage" src="{{image[0]}}"></image>
-  <text class="itemTileText">Available: {{quantity}}\n</text>
-  <text class="itemTileText">Grades: {{grades}}\n</text>
-  <text class="itemTileText">Subject: {{subject}}\n</text>
-  <text class="itemTileText">Level: {{level}}\n</text>
-  <text class="itemTileText">Stamps: {{stamps}}</text>
+<view class="background" style="margin-left: 30rpx;">
+  <image class="image" src="{{image[0]}}"></image>
+  <view class="bottom">
+    <text class="name">{{name}}</text>
+    <view class="price-tag"></view>
+    <text class="price">¥ {{stamps}}</text>
+    <view class="grade-tag">
+</view>
+</view>
+    <view style="margin-top: -78rpx; margin-left: 90rpx; width: 240rpx;">
+      <text class="grade-text">Grade(s) 适用年级：
+      </text>
+    </view>
+    <view style="margin-top: -55rpx; margin-left: 90rpx; width: 240rpx;">
+      <text class="grade-text">{{grades}}
+      </text>      
+    </view>
 </view>
