@@ -7,7 +7,7 @@
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
-  <view wx:if="{{guestStatus}}">
+  <view wx:if="{{!needRegistration}}">
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
@@ -16,11 +16,7 @@
     <button class="button" bindtap="guestLogin">现在注册</button>
   </view>
   <view id="main-menu-footer">
-    <text class="main-menu-registration-information" wx:if="{{!needRegistration}}">您已注册为 {{name}} {{grade}}-{{class}}</text>
-    <view id="main-menu-registration-ask" wx:if="{{needRegistration}}">
-      <text class="footnotes">您尚未注册</text>
-      <text class="footnotes" bindtap="handleRegister">现在注册...</text>
-    </view>
+    <text class="main-menu-registration-information" wx:if="{{!needRegistration}}">您已注册为 {{studentId}} {{chiName}}</text>
     <view id="version-footer" bindtap="adminOverride">版本 1.0.0</view>
   </view>
 </view>

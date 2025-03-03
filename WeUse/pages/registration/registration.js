@@ -12,6 +12,8 @@ Page({
     studentId: '', // Store the entered username
     chiName: '', // Store the entered password
     scanUsername: '',
+    grade: 0,
+    gradeOptions: ['请选择...','12','11','10','9','8','7','6','5','4','3','2','1'],
     showDebugInfo: false,
   },
 
@@ -81,70 +83,52 @@ Page({
     });
   },
 
+  gradeChanged: function(x) {
+    this.setData({
+        grade: x.detail.value,
+    });
+  },
+
   onVerify: function () {
-    // Validate the entered username and password (replace with your validation logic)
-    const enteredStudentId = this.data.studentId;
-    const enteredChiName = this.data.chiName;
-    console.log(enteredStudentId)
-
-    const matchedUser = studentData.find(user => user.studentId === enteredStudentId && user.name === enteredChiName);
-    console.log(matchedUser)
-    
-    // Replace this with your actual user data validation
-    if (matchedUser) {
-        wx.setStorageSync('guestStatus', true)
-        wx.showToast({
-          title: 'Success',
-          icon: 'success',
-        });
-        wx.reLaunch({
-          url: '/pages/index/index',
-        })
+    const regex = /^G(201[3-9]|202[0-4])010\d{3}$/;
+    if (this.data.chiName.length !== 0 && this.data.grade !== "0" && regex.test(this.data.studentId)) {
+      wx.showLoading({
+        title: '加载中...',
+      })
+      wx.showModal({
+        title: '确认注册',
+        content: '您确认提交注册信息吗？信息提交后不可更改。',
+        cancelText: '取消',
+        confirmText: '确认',
+        complete: async (res) => {
+          if (res.confirm) {
+            await wx.cloud.callFunction({
+              name: "registerUser",
+              data: {
+                chiName: this.data.chiName,
+                grade: this.data.gradeOptions[this.data.grade],
+                studentId: this.data.studentId
+              }
+            })
+            wx.hideLoading();
+            this.home();
+          }
+          wx.hideLoading();
+        }
+      })
+    } else {
+      wx.showModal({
+        title: '错误',
+        content: '您必须填写所有信息才能注册。请完善所有信息至指定的格式后重试。',
+        showCancel: false,
+        confirmText: '确认',
+      })
     }
-      
-    else if (studentData.find(user=>user.studentId===enteredStudentId&&user.name!=enteredChiName)){
-        wx.showToast({
-            title: 'Chinese Name Does Not Match Records',
-            icon: 'none',
-          });
-    }
-
-    else if(studentData.find(user=>user.studentId!=enteredStudentId&&user.name!=enteredChiName)){
-        // Invalid credentials, display an error message
-        wx.showToast({
-          title: 'Invalid Student ID',
-          icon: 'none',
-        });
-      }
   },
 
   home: function (event) {
     wx.reLaunch({
       url: '/pages/index/index',
-    })
-  },
-//Temporary
-  SSOLogin: function (event) {
-    wx.navigateToMiniProgram({
-      appId: 'wx26508bde5a4f3f89',
-    });
-    wx.setStorageSync('guestStatus', true)
-        wx.showToast({
-          title: 'Success',
-          icon: 'success',
-        });
-        wx.reLaunch({
-          url: '/pages/index/index',
-        })
-  },
-  //End Temporary
-
-  help: function (event) {
-    wx.showModal({
-      title: 'Unable to Verify',
-      content: 'Send your student ID and name to the WeUse WeChat Official Account. Once an administrator has verified you, you will recieve a notification through the WeUse WeChat Official Account.',
-      showCancel: false,
-      confirmText: 'Dismiss',
     })
   },
 })

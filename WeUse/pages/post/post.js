@@ -1,4 +1,5 @@
 // pages/post/post.js
+import CacheSingleton from '../../classes/CacheSingleton';
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const itemList = require('../../itemList.js');
@@ -8,9 +9,11 @@ Page({
    * Page initial data
    */
   data: {
+    cacheSingleton: CacheSingleton,
     itemList: [],
     showDebugInfo: false,
-    guestStatus: false,
+    needRegistration: false,
+    userOpenId: 'undefined',
     grades: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     subjects: ['All'],
     levels: ['All', 'S', 'S+', 'H', 'H+'],
@@ -24,11 +27,13 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
+  onLoad: async function(options) {
+    this.data.cacheSingleton = CacheSingleton.getInstance();
     this.setData({
-      itemList,
+      userOpenId: await this.data.cacheSingleton.fetchUserOpenId(),
+      needRegistration: await this.data.cacheSingleton.determineNeedNewUser(),
       showDebugInfo: wx.getStorageSync('showDebug'),
-      guestStatus: wx.getStorageSync('guestStatus'),
+      itemList,
     })
 
     let tempList = [];

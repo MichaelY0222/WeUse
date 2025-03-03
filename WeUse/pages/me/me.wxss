@@ -22,12 +22,6 @@
   font-size: 17px;
 }
 
-#main-menu-registration-ask {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 #version-footer {
   color: var(--secondary);
   display:block;

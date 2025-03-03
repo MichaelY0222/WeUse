@@ -17,7 +17,7 @@ Page({
 
   onScroll: function(e) {
     const currentScrollPosition = e.detail.scrollLeft; // Get the current scroll position
-    const currentScrollPositionRpx = (currentScrollPosition / wx.getSystemInfoSync().screenWidth) * 750;
+    const currentScrollPositionRpx = (currentScrollPosition / wx.getDeviceInfo().screenWidth) * 750;
     this.setData({
       currentImageDisplayIndex: Math.floor((currentScrollPositionRpx+337.5)/675) + 1
     });

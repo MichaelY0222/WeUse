@@ -1,27 +1,40 @@
 // pages/me/me.js
+import CacheSingleton from '../../classes/CacheSingleton';
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    cacheSingleton: CacheSingleton,
+    userOpenId: "-",
+    studentId: "-",
+    chiName: "-",
     clickCountTop: 0,
     resetTimerTop: null,
     showDebugInfo: false,
-    guestStatus: false,
-    needRegistration: false
+    needRegistration: false,
   },
 
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
+  onLoad: async function (options) {
+    this.data.cacheSingleton = CacheSingleton.getInstance();
     this.setData({
+      userOpenId: await this.data.cacheSingleton.fetchUserOpenId(),
+      needRegistration: await this.data.cacheSingleton.determineNeedNewUser(),
       showDebugInfo: wx.getStorageSync('showDebug'),
-      guestStatus: wx.getStorageSync('guestStatus'),
     })
+    if (!this.data.needRegistration) {
+      this.setData({
+        studentId: await this.data.cacheSingleton.fetchUserInfo('studentId'),
+        chiName: await this.data.cacheSingleton.fetchUserInfo('chiName'),
+      })
+    }
   },
 
   scan: function (event) {

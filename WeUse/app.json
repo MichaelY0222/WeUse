@@ -4,6 +4,7 @@
     "pages/post/post",
     "pages/me/me",
     "pages/adminOverride/adminOverride",
+    "pages/adminDebug/adminDebug",
     "pages/scanFail/scanFail",
     "pages/registration/registration",
     "pages/redeem/redeem",

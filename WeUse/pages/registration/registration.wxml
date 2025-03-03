@@ -6,21 +6,27 @@
     <text>注册</text>
   </view>
   <view class="space"></view>
-  <text class="notes">由于相关服务管控，使用部份 WeUse 服务需要先注册。</text>
-  <text class="notes">此服务仅供 SHSID 学生及其家长使用，虚假注册的用户将被停用。</text>
+  <text class="notes">由于部份 WeUse 服务仅供 SHSID 学生及其家长使用，使用其服务需要先完成注册。</text>
+  <text class="notes">请您填写以下信息，信息提交后不可更改，虚假注册的用户将被停用。</text>
   <text class="notes">您的学生证在您身边吗？您可使用扫描按钮快速注册！</text>
   <view class="spacelast"></view>
-  <input class="input" placeholder="学号" bindinput="onStudentIdInput" value="{{ studentId }}">
+  <input class="input" placeholder="学号" placeholder-style="color: var(--primary);" bindinput="onStudentIdInput" value="{{ studentId }}">
       <image src="../../icons/scan.svg" class="iconField" bindtap="scanId"></image>
   </input>
   <view class="space"></view>
-  <input class="input" placeholder="中文姓名" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
+  <input class="input" placeholder="中文姓名" placeholder-style="color: var(--primary);" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
   <view class="space"></view>
-  <view class="subtextBlue" bindtap="help">无法注册？</view>
+  <picker class="input" mode="selector" range="{{gradeOptions}}" value="{{grade}}" bindchange="gradeChanged">
+    <view class="question-select">
+      <text>{{gradeOptions[grade]}}</text>
+      <image src="../../icons/chevron-down.svg" class="selectorIcon"></image>
+    </view>
+  </picker>
   <view class="spacelast"></view>
   <button class="button" bindtap="onVerify">注册</button>
   <view class="spacelast"></view>
   <!--button class="button" bindtap="SSOLogin">Verify On one.shs.cn</button>
   <view class="spacelast"></view-->
   <button class="button" bindtap="home">返回主页</button>
+  <button id="helpButton" class="button" open-type="contact">联系客服/无法注册</button>
 </view>

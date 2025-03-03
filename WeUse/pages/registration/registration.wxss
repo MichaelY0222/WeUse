@@ -6,3 +6,22 @@
   margin: 0 3%;
   color: blue;
 }
+
+#helpButton{
+  position: absolute;
+  bottom: 30px;
+  right: 20px;
+  width: 200px;
+}
+
+.question-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: var(--primary);
+}
+
+.selectorIcon{
+  width: 20px;
+  height: 20px;
+}

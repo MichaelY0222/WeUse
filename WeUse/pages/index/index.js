@@ -1,4 +1,5 @@
 // pages/index/index.js
+import CacheSingleton from '../../classes/CacheSingleton';
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const itemList = require('../../itemList.js');
@@ -11,6 +12,7 @@ Page({
    */
   data: {
     filteredItemList:itemList,
+    cacheSingleton: CacheSingleton,
     showDebugInfo: false,
     gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
     gradeFilterIndex: 0,
@@ -24,6 +26,8 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad (options) {
+    wx.cloud.init();
+    this.data.cacheSingleton = CacheSingleton.initialize(wx.cloud.database());
     this.setData({
       itemList,
       showDebugInfo: wx.getStorageSync('showDebug'),

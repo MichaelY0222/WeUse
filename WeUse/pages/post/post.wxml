@@ -7,7 +7,7 @@
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
-  <view wx:if="{{guestStatus}}">
+  <view wx:if="{{!needRegistration}}">
   <view class="form-section">
     <view class="form-item">
       <text class="label">Insert item name</text>
