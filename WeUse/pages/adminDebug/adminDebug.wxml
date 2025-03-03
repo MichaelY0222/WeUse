@@ -1,0 +1,24 @@
+<!--pages/adminDebug/adminDebug.wxml-->
+<view class="page">
+  <image src="../../icons/logo.svg" class="weUseLogo"></image>
+  <text hidden="{{!showDebugInfo}}">pages/adminDebug/adminDebug.wxml</text>
+  <view class="heading">
+    <text>客户服务</text>
+  </view>
+  <view class="container" wx:if="{{!opDone}}">
+    <image src="../../icons/wait.png" class="waitIcon"></image>
+    <text class="subheading">感谢您联系 WeUse 客户服务。</text>
+    <text class="subheading">为了帮助您解决平台账号相关问题，</text>
+    <text class="subheading">我们正在获取您的平台账号信息，</text>
+    <text class="subheading">敬请您稍后，谢谢！</text>
+  </view>
+  <view class="container" wx:else>
+    <image src="../../icons/check.png" class="checkIcon"></image>
+    <view class="spacelast"></view>
+    <text class="subheading">感谢您联系 WeUse 客户服务。</text>
+    <text class="subheading">您的客户服务已结束，</text>
+    <text class="subheading">您可返回主页，谢谢！</text>
+    <view class="spacelast"></view>
+    <button class="button" bindtap="home">返回主页</button>
+  </view>
+</view>

@@ -1,0 +1,10 @@
+/* pages/adminDebug/adminDebug.wxss */
+.waitIcon{
+  width: 30vw;
+  height: 25vh;
+}
+
+.checkIcon{
+  width: 45vw;
+  height: 25vh;
+}
