@@ -8,7 +8,7 @@
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
-  <view wx:if="{{guestStatus}}">
+  <view wx:if="{{!needRegistration}}">
     <view class="card">
         <scroll-view class="image-scroll" scroll-x="true" bindscroll="onScroll">
           <image class="image" wx:for="{{itemList[itemIndex].imgUrl}}" wx:key="index" src="{{itemList[itemIndex].imgUrl[index]}}" mode="scaleToFill"></image>
@@ -57,10 +57,10 @@
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">Registration is required to use this service</text>
+    <text class="subheading">使用此服务需要先注册</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">Register Now</button>
+    <button class="button" bindtap="guestLogin">现在注册</button>
     <view class="spacelast"></view>
-    <button class="button" bindtap="home">Return to Home</button>
+    <button class="button" bindtap="home">返回主页</button>
   </view>
 </view>

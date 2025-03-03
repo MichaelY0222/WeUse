@@ -3,9 +3,9 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/adminOverride/adminOverride.wxml</text>
   <view class="heading">
-    <text>管理员登录</text>
+    <text>管理员操作</text>
   </view>
-  <view wx:if="{{!loginStatus}}">
+  <!-- <view wx:if="{{!loginStatus}}">
     <view class="spacelast"></view>
     <input class="input" placeholder="用户名" bindinput="onUsernameInput" value="{{ username }}">
       <image src="../../icons/scan.svg" class="iconField" bindtap="scan"></image>
@@ -16,6 +16,14 @@
     <view class="subtextBlue" bindtap="pwdreset">忘记密码？</view>
     <view class="spacelast"></view>
     <button class="button" bindtap="onLogin">登录</button>
+  </view> -->
+  <view class="container" wx:if="{{!isAdmin}}">
+    <image src="../../icons/lock.png" class="lockIcon"></image>
+    <text class="subheading">您无权限访问此页面，</text>
+    <text class="subheading">请联系管理员开通相关权限，</text>
+    <text class="subheading">或返回主页，谢谢！</text>
+    <view class="spacelast"></view>
+    <button class="button" bindtap="home">返回主页</button>
   </view>
   <view wx:else>
     <view class="spacelast"></view>
@@ -23,10 +31,6 @@
     <view class="space" hidden="{{!showDebugInfo}}"></view>
     <button class="button" hidden="{{!showDebugInfo}}" bindtap="onViewLogs">View Logs</button>
     <view class="spacelast"></view>
-    <button class="button" bindtap="logout">管理员注销</button>
+    <button class="button" bindtap="home">返回主页</button>
   </view>
-  <view class="spacelast"></view>
-  <button class="button" bindtap="guestLogout" hidden="{{!guestStatus}}">Guest Logout</button>
-  <view class="spacelast" hidden="{{!guestStatus}}"></view>
-  <button class="button" bindtap="home">返回主页</button>
 </view>

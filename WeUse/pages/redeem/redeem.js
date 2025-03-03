@@ -1,4 +1,5 @@
 // pages/redeem/redeem.js
+import CacheSingleton from '../../classes/CacheSingleton';
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const itemList = require('../../itemList.js');
@@ -9,7 +10,8 @@ Page({
    */
   data: {
     showDebugInfo: false,
-    guestStatus: false,
+    needRegistration: false,
+    userOpenId: 'undefined',
     itemIndex: "",
     itemList: itemList,
     currentImageDisplayIndex: 1,
@@ -36,8 +38,9 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad(options) {
+  onLoad: async function(options) {
     //const itemId = options.itemId || 0;
+    this.data.cacheSingleton = CacheSingleton.getInstance();
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('itemId', (res) => { // PROMISE
       console.log(res);
@@ -48,8 +51,9 @@ Page({
       console.log(this.data.itemList[this.data.itemIndex].name)
     });
     this.setData({
+      userOpenId: await this.data.cacheSingleton.fetchUserOpenId(),
+      needRegistration: await this.data.cacheSingleton.determineNeedNewUser(),
       showDebugInfo: wx.getStorageSync('showDebug'),
-      guestStatus: wx.getStorageSync('guestStatus'),
     })
   },
 

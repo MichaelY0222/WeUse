@@ -100,7 +100,7 @@ class CacheSingleton {
       }).get();
       if (checkAdmin.data.length === 1){
         this.#isAdmin = true;
-      }
+      } else this.#isAdmin = false;
       wx.hideLoading();
       return this.#needRegistration;
     }
