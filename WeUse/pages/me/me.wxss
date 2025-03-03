@@ -1,1 +1,37 @@
 /* pages/me/me.wxss */
+#main-menu-footer {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.main-menu-registration-information {
+  font-size: 17px;
+  color: var(--secondary);
+  margin: 0 31px;
+}
+
+#main-menu-registration-button {
+  margin-top: 11px;
+  color: var(--link);
+  font-size: 17px;
+}
+
+#main-menu-registration-ask {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#version-footer {
+  color: var(--secondary);
+  display:block;
+  text-align: center;
+  padding-top:16px;
+  font-size: 17px;
+}

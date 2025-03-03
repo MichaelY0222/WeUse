@@ -3,7 +3,7 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/post/post.wxml</text>
   <view class="heading">
-    <text>Post</text>
+    <text>发布</text>
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
@@ -78,8 +78,8 @@
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">Login is required to use this service</text>
+    <text class="subheading">使用此服务需要先注册</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">Login</button>
+    <button class="button" bindtap="guestLogin">现在注册</button>
   </view>
 </view>

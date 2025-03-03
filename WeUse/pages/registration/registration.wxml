@@ -3,25 +3,24 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/registration/registration.wxml</text>
   <view class="heading">
-    <text>Registration</text>
-    <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
+    <text>注册</text>
   </view>
   <view class="space"></view>
-  <text class="notes">For security reasons, registration is required to use WeUse services.</text>
-  <text class="notes">Have your student ID with you? Try using the scan button! Please use capital letters.</text>
-  <text class="notes">Don't have a chinese name? Try using your english full name, or click "Unable to Verify"</text>
+  <text class="notes">由于相关服务管控，使用部份 WeUse 服务需要先注册。</text>
+  <text class="notes">此服务仅供 SHSID 学生及其家长使用，虚假注册的用户将被停用。</text>
+  <text class="notes">您的学生证在您身边吗？您可使用扫描按钮快速注册！</text>
   <view class="spacelast"></view>
-  <input class="input" placeholder="Student ID" bindinput="onStudentIdInput" value="{{ studentId }}">
+  <input class="input" placeholder="学号" bindinput="onStudentIdInput" value="{{ studentId }}">
       <image src="../../icons/scan.svg" class="iconField" bindtap="scanId"></image>
   </input>
   <view class="space"></view>
-  <input class="input" placeholder="Chinese Name" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
+  <input class="input" placeholder="中文姓名" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
   <view class="space"></view>
-  <view class="subtextBlue" bindtap="help">Unable to Verify?</view>
+  <view class="subtextBlue" bindtap="help">无法注册？</view>
   <view class="spacelast"></view>
-  <button class="button" bindtap="onVerify">Verify</button>
+  <button class="button" bindtap="onVerify">注册</button>
   <view class="spacelast"></view>
   <!--button class="button" bindtap="SSOLogin">Verify On one.shs.cn</button>
   <view class="spacelast"></view-->
-  <button class="button" bindtap="home">Return to Home</button>
+  <button class="button" bindtap="home">返回主页</button>
 </view>

@@ -57,9 +57,9 @@
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">Login is required to use this service</text>
+    <text class="subheading">Registration is required to use this service</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">Login</button>
+    <button class="button" bindtap="guestLogin">Register Now</button>
     <view class="spacelast"></view>
     <button class="button" bindtap="home">Return to Home</button>
   </view>

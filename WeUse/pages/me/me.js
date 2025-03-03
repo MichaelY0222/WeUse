@@ -11,6 +11,7 @@ Page({
     resetTimerTop: null,
     showDebugInfo: false,
     guestStatus: false,
+    needRegistration: false
   },
 
   /**

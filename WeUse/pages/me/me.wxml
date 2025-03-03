@@ -3,7 +3,7 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/me/me.wxml</text>
   <view class="heading">
-    <text>Me</text>
+    <text>我的</text>
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
@@ -11,9 +11,16 @@
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">Login is required to use this service</text>
+    <text class="subheading">使用此服务需要先注册</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">Login</button>
+    <button class="button" bindtap="guestLogin">现在注册</button>
   </view>
-  <text class="footnotes" bindtap="adminOverride">Version 1.0</text>
+  <view id="main-menu-footer">
+    <text class="main-menu-registration-information" wx:if="{{!needRegistration}}">您已注册为 {{name}} {{grade}}-{{class}}</text>
+    <view id="main-menu-registration-ask" wx:if="{{needRegistration}}">
+      <text class="footnotes">您尚未注册</text>
+      <text class="footnotes" bindtap="handleRegister">现在注册...</text>
+    </view>
+    <view id="version-footer" bindtap="adminOverride">版本 1.0.0</view>
+  </view>
 </view>
