@@ -1,8 +1,8 @@
 <!--pages/index/index.wxml-->
 <view class="page">
-  <text hidden="{{!showDebugInfo}}">pages/index/index.wxml</text>
   <view class="heading">
     <image src="../../icons/logo.svg" class="weUseLogo"></image>
+    <text hidden="{{!showDebugInfo}}">pages/index/index.wxml</text>
     <!--text class="weUseSlogan">Let's reuse!</text-->
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>

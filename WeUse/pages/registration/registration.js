@@ -1,4 +1,5 @@
 // pages/registration/registration.js
+const { handleCode } = require('../../utils/handleCode');
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
 const studentData = require('../../studentData.js');
@@ -30,27 +31,17 @@ Page({
     wx.scanCode({
         onlyFromCamera: true,
         success: (res) => {
-            // Store the scanned data in the variable
-            QRData = res.result;
-            const matchedUser = userCredentials.find(user => user.username === QRData);
-            if(matchedUser){
-                wx.navigateTo({
-                    url: `/pages/adminOverride/adminOverride?scanUsername=${QRData}`,
-                });
-            }
-            else{
-                wx.navigateTo({
-                    url: '/pages/scanFail/scanFail',
-                });
-            }
-          },
+          // Store the scanned data in the variable
+          handleCode(res.result);
+        },
         fail: (res) => {
-            if (res.errMsg !== 'scanCode:fail cancel') {
-                // Navigate to the specific page (replace with your page URL)
-                wx.navigateTo({
-                  url: '/pages/scanFail/scanFail',
-                });
-              }
+          if (res.errMsg !== 'scanCode:fail cancel') {
+            // Navigate to the specific page (replace with your page URL)
+            console.error(res);
+            wx.navigateTo({
+              url: '/pages/scanFail/scanFail',
+            });
+          }
         },
     });
   },
@@ -94,6 +85,7 @@ Page({
     if (this.data.chiName.length !== 0 && this.data.grade !== "0" && regex.test(this.data.studentId)) {
       wx.showLoading({
         title: '加载中...',
+        mask: true
       })
       wx.showModal({
         title: '确认注册',

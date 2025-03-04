@@ -14,6 +14,7 @@ class CacheSingleton {
     static initialize(db) {
         wx.showLoading({
           title: '加载中...',
+          mask: true
         }); 
         if (instance === null) {
           instance = new CacheSingleton(db);
@@ -24,6 +25,7 @@ class CacheSingleton {
     static getInstance() {
         wx.showLoading({
           title: '加载中...',
+          mask: true
         });
         if (instance === null) {
           wx.hideLoading();
@@ -36,6 +38,7 @@ class CacheSingleton {
     async getTeacherImages(totalImages, rerenderCallback) {
         wx.showLoading({
           title: '加载中...',
+          mask: true
         });
         if (this.#imageUrls !== undefined) {
             wx.hideLoading();
@@ -61,6 +64,7 @@ class CacheSingleton {
     async fetchUserOpenId() {
       wx.showLoading({
         title: '加载中...',
+        mask: true
       });
       if (this.#userOpenId !== undefined) {
         wx.hideLoading();
@@ -77,6 +81,7 @@ class CacheSingleton {
     async determineNeedNewUser() {
       wx.showLoading({
         title: '加载中...',
+        mask: true
       });
       if (this.#needRegistration !== undefined) {
         console.log("Registration Status Already Fetched");

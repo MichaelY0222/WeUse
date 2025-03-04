@@ -2,12 +2,14 @@
 <view class="page">
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/scanFail/scanFail.wxml</text>
-  <view class="heading">Scan Failed</view>
-  <view class="iconViewport">
-    <image src="../../icons/redx.svg" class="icon"></image>
+  <view class="container">
+    <view class="heading">扫描失败</view>
+    <view class="iconViewport">
+      <image src="../../icons/redx.svg" class="icon"></image>
+    </view>
+    <view class="text">
+      <text>{{caption}}</text>
+    </view>
+    <button class="button" bindtap="back">返回</button>
   </view>
-  <view class="text">
-    <text>This is not a vaild WeUse Code.</text>
-  </view>
-  <button class="button" bindtap="back">Dismiss</button>
 </view>

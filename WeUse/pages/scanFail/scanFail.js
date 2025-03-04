@@ -15,6 +15,12 @@ Page({
     this.setData({
       showDebugInfo: wx.getStorageSync('showDebug')
     })
+    const eventChannel = this.getOpenerEventChannel();
+    eventChannel.on('errorDetail', (data) => {
+      this.setData({
+        caption: data,
+      });
+    })
   },
 
   back: function (event) {

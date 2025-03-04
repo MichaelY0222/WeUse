@@ -5,7 +5,8 @@ App({
     const logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
-    wx.setStorageSync('showDebug', false)
+    const showDebug = wx.getStorageSync('showDebug') || false
+    wx.setStorageSync('showDebug', showDebug)
   },
   globalData: {
     userInfo: null
