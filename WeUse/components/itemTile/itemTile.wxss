@@ -2,7 +2,7 @@
   display: grid;
   width: 300rpx;
   height: 410rpx;
-  background-color: #EBC542;
+  background-color: #ECC342;
   border-radius: 40rpx;
   margin: 10rpx;
 }

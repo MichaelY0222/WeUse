@@ -8,7 +8,7 @@ view {
     --list-search-box: #E4E3E9;
     --warn: #FF3B30;
     --red: #FF3B30;
-    --green: #34C759;
+    --green: #469A4B;
     --page-background: #F2F1F6;
     --primary: #000000;
     --anti-primary: #FFFFFF;
@@ -24,7 +24,7 @@ view {
         --list-search-box: #1C1C1E;
         --warn: #FF453A;
         --red: #FF453A;
-        --green: #30D158;
+        --green: #6BC270;
         --page-background: #000000;
         --primary: #FFFFFF;
         --anti-primary: #000000;
