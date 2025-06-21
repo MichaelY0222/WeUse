@@ -28,6 +28,10 @@
   white-space: nowrap;
 }
 
+item-tile {
+  width: 50%;
+}
+
 .item{
   border-radius: 8px;
   border: 1px solid black;

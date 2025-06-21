@@ -8,72 +8,37 @@
   </view>
   <view class="spacelast"></view>
   <view wx:if="{{!needRegistration}}">
-  <view class="form-section">
-    <view class="form-item">
-      <text class="label">Insert item name</text>
-      <input class="input" placeholder="Enter item name" bindinput="onItemNameInput"/>
-    </view>
-
-    <view class="form-item">
-      <text class="label">Add up to 3 images</text>
-      <view class="image-upload">
-        <image src="/images/pencil_photo.png" class="image-placeholder"/>
-        <button class="upload-button" bindtap="uploadImage">+</button>
+    <view class="container">
+      <view class="image-grid">
+        <view class="cover-photo-label">封面<br/>Cover Photo</view>
+        <block wx:for="{{images}}" wx:key="index">
+          <view class="image-box">
+            <image src="{{item}}" class="item-image" />
+            <text class="delete-btn" bindtap="removeImage" data-index="{{index}}">x</text>
+            <text class="img-index">{{index + 1}}</text>
+          </view>
+        </block>
+        <view class="image-box" wx:if="{{images.length < 4}}" bindtap="chooseImage">
+          <image src="../images/addimage.png" class="add-image-icon" />
+        </view>
       </view>
-    </view>
-
-    <view class="form-item">
-      <text class="label">Grade</text>
-      <picker class="picker" mode="selector" range="{{grades}}" value="{{selectedGrade}}" bindchange="bindGradeChange">
-        <view class="picker-view">
-          {{grades[selectedGrade]}}
-        </view>
+      <input class="input-box" placeholder="名称" bindinput="onInput" data-field="name" />
+      <picker mode="selector" range="{{gradesOptions}}" bindchange="onGradeChange">
+        <view class="picker-box">{{formData.grades || '适用年级(可多选)'}}</view>
       </picker>
-    </view>
-
-    <view class="form-item">
-      <text class="label">Subject</text>
-      <picker class="picker" mode="selector" range="{{subjects}}" value="{{selectedSubject}}" bindchange="bindSubjectChange">
-        <view class="picker-view">
-          {{subjects[selectedSubject]}}
-        </view>
+      <picker mode="selector" range="{{subjectOptions}}" bindchange="onSubjectChange">
+        <view class="picker-box">{{formData.subject || '适用科目(可多选)'}}</view>
       </picker>
-    </view>
-
-    <view class="form-item">
-      <text class="label">Level</text>
-      <picker class="picker" mode="selector" range="{{levels}}" value="{{selectedLevel}}" bindchange="bindLevelChange">
-        <view class="picker-view">
-          {{levels[selectedLevel]}}
-        </view>
+      <picker mode="selector" range="{{levelOptions}}" bindchange="onLevelChange">
+        <view class="picker-box">{{formData.level || '适用水平(可多选)'}}</view>
       </picker>
-    </view>
-
-    <view class="form-item">
-      <text class="label">Set a price</text>
-      <view class="text_input">
-        <text class="label_text">
-          ¥
-        </text>
-        <input class="input" type="number" placeholder="Enter price" bindinput="onPriceInput"/>
+      <textarea class="textarea-box" placeholder="物品介绍" bindinput="onInput" data-field="description"></textarea>
+      <view class="price-box">
+        <text class="currency">￥</text>
+        <input class="price-input" type="number" placeholder="0.00" bindinput="onInput" data-field="price" />
       </view>
-    </view>
-
-    <view class="form-item">
-      <text class="label">Select your drop-off location</text>
-      <picker class="picker" mode="selector" range="{{locations}}" value="{{selectedLocation}}" bindchange="bindLocationChange">
-        <view class="picker-view">
-          {{locations[selectedLocation]}}
-        </view>
-      </picker>
-    </view>
-    
-    <view class="info-text">
-      <text>You chose to drop-off your item at {{locations[selectedLocation]}}, please send your item to the first floor locker area this week.</text>
-    </view>
-
-    <button class="post-button" bindtap="postItem">POST!</button>
-  </view>
+      <button class="submit-btn" bindtap="submitForm">POST发布</button>
+</view>
 
   </view>
   <view wx:else class="container">

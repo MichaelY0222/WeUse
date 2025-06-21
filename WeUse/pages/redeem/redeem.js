@@ -3,7 +3,6 @@ import CacheSingleton from '../../classes/CacheSingleton';
 const { handleCode } = require('../../utils/handleCode');
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
-const itemList = require('../../itemList.js');
 Page({
 
   /**
@@ -14,7 +13,7 @@ Page({
     needRegistration: false,
     userOpenId: 'undefined',
     itemIndex: "",
-    itemList: itemList,
+    itemList: [],
     currentImageDisplayIndex: 1,
   },
 
@@ -43,13 +42,18 @@ Page({
     //const itemId = options.itemId || 0;
     this.data.cacheSingleton = CacheSingleton.getInstance();
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('itemId', (res) => { // PROMISE
-      console.log(res);
+    eventChannel.on('itemList', (resp) => {
       this.setData({
-        itemIndex: res,
+        itemList: resp,
       });
-      console.log(this.data.itemIndex);
-      console.log(this.data.itemList[this.data.itemIndex].name)
+      eventChannel.on('itemId', (res) => { // PROMISE
+        console.log(res);
+        this.setData({
+          itemIndex: res,
+        });
+        console.log(this.data.itemIndex);
+        console.log(this.data.itemList[this.data.itemIndex].name)
+      });
     });
     this.setData({
       userOpenId: await this.data.cacheSingleton.fetchUserOpenId(),

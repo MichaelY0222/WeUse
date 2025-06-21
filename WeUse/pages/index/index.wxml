@@ -30,8 +30,28 @@
       <view class="spacelast"></view>
       <button class="button" bindtap="clearFilters">Clear Filters</button>
       </view>
-      <view wx:for="{{filteredItemList}}" wx:for-item="item" wx:for-index="index" wx:key="id" class="itemRow">
-        <item-tile index="{{index}}" name="{{item.name}}" image="{{item.imgUrl}}" quantity="{{item.quantity}}" grades="{{item.grades}}" subject="{{item.subject}}" stamps="{{item.stamps}}" level="{{item.level}}" bindtap="redeem" data-id="{{item.index}}"></item-tile>
+      <view wx:for="{{filteredItemList.length/2 | floor}}" wx:for-index="rowIdx" wx:key="rowIdx" class="itemRow">
+        <item-tile wx:if="{{filteredItemList[rowIdx*2]}}" 
+          name="{{filteredItemList[rowIdx*2].name}}"
+          image="{{filteredItemList[rowIdx*2].imgUrl}}"
+          quantity="{{filteredItemList[rowIdx*2].quantity}}"
+          grades="{{filteredItemList[rowIdx*2].grades}}"
+          subject="{{filteredItemList[rowIdx*2].subject}}"
+          stamps="{{filteredItemList[rowIdx*2].stamps}}"
+          level="{{filteredItemList[rowIdx*2].level}}"
+          bindtap="redeem" 
+          data-id="{{filteredItemList[rowIdx*2].index}}" />
+
+        <item-tile wx:if="{{filteredItemList[rowIdx*2+1]}}" 
+          name="{{filteredItemList[rowIdx*2+1].name}}"
+          image="{{filteredItemList[rowIdx*2+1].imgUrl}}"
+          quantity="{{filteredItemList[rowIdx*2+1].quantity}}"
+          grades="{{filteredItemList[rowIdx*2+1].grades}}"
+          subject="{{filteredItemList[rowIdx*2+1].subject}}"
+          stamps="{{filteredItemList[rowIdx*2+1].stamps}}"
+          level="{{filteredItemList[rowIdx*2+1].level}}"
+          bindtap="redeem" 
+          data-id="{{filteredItemList[rowIdx*2+1].index}}" />
       </view>
     </scroll-view>
 </view>

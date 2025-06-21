@@ -1,13 +1,15 @@
+import allCollectionsData from "../utils/allCollectionsData";
+import { item } from "./item";
 let instance = null;
 
 class CacheSingleton {
     #db
-    #imageUrls
     #userOpenId
     #needRegistration
     #studentId
     #studentChiName
     #isAdmin
+    #items
     constructor(db) {
         this.#db = db;
     }
@@ -34,33 +36,19 @@ class CacheSingleton {
         wx.hideLoading();
         return instance;
     }
-
-    async getTeacherImages(totalImages, rerenderCallback) {
-        wx.showLoading({
-          title: '加载中...',
-          mask: true
-        });
-        if (this.#imageUrls !== undefined) {
-            wx.hideLoading();
-            rerenderCallback();
-            return;
-        }
-        this.#imageUrls = Array(totalImages);
-        for (let i=1;i<=totalImages;i++) {
-            wx.cloud.downloadFile({
-                fileID: `cloud://asb-center-7gixak2a33f2f3e5.6173-asb-center-7gixak2a33f2f3e5-1307575779/BabyPictures/${i}.jpg`
-            }).then((res) => {
-                this.#imageUrls[i-1] = res.tempFilePath;
-                wx.hideLoading();
-                rerenderCallback();
-            })
-        }
+    async getItems() {
+      if (this.#items !== undefined) {
+        console.log("Items Already Fetched");
+        wx.hideLoading();
+        return this.#items;
+      }
+      this.#items = new Array();
+      let items = await allCollectionsData(this.#db, "items");
+      for (let i=0;i<items.data.length;i++) {
+          this.#items.push(new item(items.data[i].index, items.data[i].id, items.data[i].name, items.data[i].quantity, items.data[i].grades, items.data[i].subject, items.data[i].contributor, items.data[i].imgUrl, items.data[i].stamps, items.data[i].level, items.data[i].needsApproval, items.data[i].description));
+      }
+      return this.#items;
     }
-
-    fetchImageUrls() {
-        return this.#imageUrls;
-    }
-
     async fetchUserOpenId() {
       wx.showLoading({
         title: '加载中...',

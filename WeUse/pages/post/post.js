@@ -3,12 +3,8 @@ import CacheSingleton from '../../classes/CacheSingleton';
 const { handleCode } = require('../../utils/handleCode');
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
-const itemList = require('../../itemList.js');
-Page({
 
-  /**
-   * Page initial data
-   */
+Page({
   data: {
     cacheSingleton: CacheSingleton,
     itemList: [],
@@ -22,103 +18,147 @@ Page({
     selectedGrade: 0,
     selectedSubject: 0,
     selectedLevel: 0,
-    selectedLocation: 0
+    selectedLocation: 0,
+    images: [],
+    itemName: '',
+    itemPrice: ''
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
   onLoad: async function(options) {
     this.data.cacheSingleton = CacheSingleton.getInstance();
     this.setData({
       userOpenId: await this.data.cacheSingleton.fetchUserOpenId(),
       needRegistration: await this.data.cacheSingleton.determineNeedNewUser(),
       showDebugInfo: wx.getStorageSync('showDebug'),
-      itemList,
-    })
+      itemList: await this.data.cacheSingleton.getItems(),
+    });
 
     let tempList = [];
-    for (let i = 0; i < itemList.length; i++) {
-      if (!tempList.includes(itemList[i].subject)) {
-        tempList.push(itemList[i].subject);
+    for (let i = 0; i < this.data.itemList.length; i++) {
+      if (!tempList.includes(this.data.itemList[i].subject)) {
+        tempList.push(this.data.itemList[i].subject);
       }
     }
     this.setData({
       subjects: this.data.subjects.concat(tempList.sort())
-    })
+    });
   },
 
   scan: function (event) {
     wx.scanCode({
-        onlyFromCamera: true,
-        success: (res) => {
-          // Store the scanned data in the variable
-          handleCode(res.result);
-        },
-        fail: (res) => {
-          if (res.errMsg !== 'scanCode:fail cancel') {
-            // Navigate to the specific page (replace with your page URL)
-            console.error(res);
-            wx.navigateTo({
-              url: '/pages/scanFail/scanFail',
-            });
-          }
-        },
+      onlyFromCamera: true,
+      success: (res) => {
+        handleCode(res.result);
+      },
+      fail: (res) => {
+        if (res.errMsg !== 'scanCode:fail cancel') {
+          console.error(res);
+          wx.navigateTo({ url: '/pages/scanFail/scanFail' });
+        }
+      },
     });
   },
 
-  guestLogin: function (e) {
-    wx.reLaunch({
-      url: '/pages/registration/registration',
-    });
+  guestLogin: function () {
+    wx.reLaunch({ url: '/pages/registration/registration' });
   },
 
   bindGradeChange: function(e) {
-    this.setData({
-      selectedGrade: e.detail.value
-    });
-    console.log("Selected Grade", this.data.grades[this.data.selectedGrade]);
+    this.setData({ selectedGrade: e.detail.value });
   },
 
   bindSubjectChange: function(e) {
-    this.setData({
-      selectedSubject: e.detail.value
-    });
-    console.log("Selected Subject", this.data.subjects[this.data.selectedSubject]);
+    this.setData({ selectedSubject: e.detail.value });
   },
 
   bindLevelChange: function(e) {
-    this.setData({
-      selectedLevel: e.detail.value
-    });
-    console.log("Selected Level", this.data.levels[this.data.selectedLevel]);
+    this.setData({ selectedLevel: e.detail.value });
   },
 
   bindLocationChange: function(e) {
-    this.setData({
-      selectedLocation: e.detail.value
-    });
-    console.log("Selected Location", this.data.locations[this.data.selectedLocation]);
+    this.setData({ selectedLocation: e.detail.value });
   },
 
-  uploadImage: function() {
-    console.log("UPLOAD")
-    // Function to handle image upload
-  },
-
-  postItem: function() {
-    console.log("POST")
-    // Function to handle posting the item
-  },
-
-  // Empty functions for input detection
   onItemNameInput: function(event) {
-    var objectName = event.detail.value;
-    console.log("Name is " + objectName);
+    this.setData({ itemName: event.detail.value });
   },
 
   onPriceInput: function(event) {
-    var objectPrice = event.detail.value;
-    console.log("Price is ¥" + objectPrice);
+    this.setData({ itemPrice: event.detail.value });
   },
-})
+
+  uploadImage: function() {
+    const that = this;
+    wx.chooseMedia({
+      count: 4 - that.data.images.length,
+      mediaType: ['image'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        that.setData({
+          images: that.data.images.concat(res.tempFiles.map(f => f.tempFilePath))
+        });
+      }
+    });
+  },
+
+  removeImage: function(e) {
+    const index = e.currentTarget.dataset.index;
+    const updated = [...this.data.images];
+    updated.splice(index, 1);
+    this.setData({ images: updated });
+  },
+
+  postItem: async function() {
+    if (!this.data.itemName || this.data.images.length === 0) {
+      wx.showToast({ title: '请填写名称并上传图片', icon: 'none' });
+      return;
+    }
+
+    wx.showLoading({ title: '上传中...' });
+
+    try {
+      const uploadedImgs = await Promise.all(
+        this.data.images.map((imgPath, idx) => {
+          return wx.cloud.uploadFile({
+            cloudPath: `itemImages/${Date.now()}-${idx}.png`,
+            filePath: imgPath
+          });
+        })
+      );
+
+      const db = wx.cloud.database();
+      const form = this.data;
+
+      await db.collection('Items').add({
+        data: {
+          index: 1,
+          id: Math.floor(Math.random() * 10000),
+          name: form.itemName,
+          quantity: 1,
+          grades: form.grades[form.selectedGrade],
+          subject: form.subjects[form.selectedSubject],
+          contributor: form.userOpenId,
+          imgUrl: uploadedImgs.map(f => f.fileID),
+          stamps: parseFloat(form.itemPrice) * 10,
+          level: form.levels[form.selectedLevel],
+          needsApproval: false,
+          description: 'Say something about this item...'
+        }
+      });
+
+      wx.hideLoading();
+      wx.showToast({ title: '发布成功', icon: 'success' });
+
+      this.setData({
+        images: [],
+        itemName: '',
+        itemPrice: ''
+      });
+
+    } catch (err) {
+      wx.hideLoading();
+      console.error(err);
+      wx.showToast({ title: '发布失败', icon: 'error' });
+    }
+  }
+});

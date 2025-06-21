@@ -3,16 +3,14 @@ import CacheSingleton from '../../classes/CacheSingleton';
 const { handleCode } = require('../../utils/handleCode');
 let QRData = '';
 const userCredentials = require('../../userCredentials.js');
-const itemList = require('../../itemList.js');
 const { join } = require('../../userCredentials.js');
-let itemListFiltered = itemList;
 
 Page({
   /**
    * Page initial data
    */
   data: {
-    filteredItemList:itemList,
+    filteredItemList: [],
     cacheSingleton: CacheSingleton,
     showDebugInfo: false,
     gradeFilters: ['All','1','2','3','4','5','6','7','8','10','11','12'],
@@ -26,24 +24,29 @@ Page({
   /**
    * Lifecycle function--Called when page load
    */
-  onLoad (options) {
-    wx.cloud.init();
-    this.data.cacheSingleton = CacheSingleton.initialize(wx.cloud.database());
-    this.setData({
-      itemList,
-      showDebugInfo: wx.getStorageSync('showDebug'),
+  onLoad: async function(options) {
+    wx.showLoading({
+      title: 'Loading...',
     })
+    wx.cloud.init();
+    this.data.cacheSingleton = await CacheSingleton.initialize(wx.cloud.database());
+    this.setData({
+      itemList: await this.data.cacheSingleton.getItems(),
+      filteredItemList: await this.data.cacheSingleton.getItems(),
+      showDebugInfo: await wx.getStorageSync('showDebug'),
+    })
+    console.log(this.data.itemList)
     let tempList = [];
-    for (let i = 0; i < itemList.length; i++) {
-      if (!tempList.includes(itemList[i].subject)) {
-        tempList.push(itemList[i].subject);
+    for (let i = 0; i < this.data.itemList.length; i++) {
+      if (!tempList.includes(this.data.itemList[i].subject)) {
+        tempList.push(this.data.itemList[i].subject);
       }
     }
-    
     this.setData({
       subjectFilters: this.data.subjectFilters.concat(tempList.sort())
     })
-    this.refreshList()
+    this.refreshList();
+    wx.hideLoading();
   },
 
   refreshList: function () {
@@ -112,7 +115,7 @@ Page({
   },
 
   filterList: function () {
-    itemListFiltered = itemList;
+    itemListFiltered = this.data.itemList;
     
     if (this.data.substringFilter != undefined) {
       itemListFiltered = itemListFiltered.filter(item => item.name.toLowerCase().includes(this.data.substringFilter.toLowerCase()));
@@ -180,6 +183,7 @@ Page({
     wx.navigateTo({
       url: '/pages/redeem/redeem',
       success: (res) => {
+        res.eventChannel.emit("itemList", this.data.itemList);
         res.eventChannel.emit("itemId", x.currentTarget.dataset.id);
       }
     });
