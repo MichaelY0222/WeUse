@@ -3,7 +3,7 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/registration/registration.wxml</text>
   <view class="heading">
-    <text>注册</text>
+    <text>Registration</text>
   </view>
   <view class="space"></view>
   <text class="notes">由于部份 WeUse 服务仅供 SHSID 学生及其家长使用，使用其服务需要先完成注册。</text>

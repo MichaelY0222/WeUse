@@ -3,5 +3,6 @@
   "projectname": "WeUse",
   "setting": {
     "compileHotReLoad": true
-  }
+  },
+  "libVersion": "3.10.0"
 }

@@ -3,113 +3,136 @@
   <text hidden="{{!showDebugInfo}}">pages/me/me.wxml</text>
 
   <view class="heading">
-    <text>我的账号</text>
+    <text>Me</text>
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
 
   <view class="spacelast"></view>
 
-  <view wx:if="{{!needRegistration}}">
-    <!-- Profile Info -->
-    <!-- <view class="profileBox">
+  <view wx:if="{{!needRegistration}}" class="content">
+
+    <!-- Account Title -->
+    <view class="sectionTitle">My Account</view>
+
+    <!-- Profile Box -->
+    <view class="profileBox">
       <image src="{{avatarUrl}}" class="avatar"></image>
-      <view class="nameBadge">
+
+      <view class="profileInfo">
         <text class="nickname">{{nickName}}</text>
-        <text class="tag">学生</text>
+        <text class="roleTagMain">Student</text>
       </view>
+
       <view class="verifiedBadge">
-        <image src="../../icons/check.png" class="checkIcon"></image>
-        <text>合格</text>
-      </view>
-    </view> -->
-
-    <!-- Editable fields -->
-    <!-- <view class="inputField">
-      <input value="{{chiName}}" placeholder="姓名" />
-      <image src="../../icons/edit.png" class="editIcon"></image>
-    </view>
-
-    <view class="inputField">
-      <input value="{{grades}}" placeholder="年级 (可多选)" />
-      <image src="../../icons/edit.png" class="editIcon"></image>
-    </view> -->
-
-    <!-- Locked fields (WeChat, phone, ID) -->
-    <!-- <view class="inputField disabled">
-      <input value="{{wechatId}}" placeholder="微信号" disabled />
-      <image src="../../icons/edit.png" class="editIcon"></image>
-    </view>
-
-    <view class="inputField disabled">
-      <input value="{{phone}}" placeholder="手机号 (11 digits ONLY)" disabled />
-      <image src="../../icons/edit.png" class="editIcon"></image>
-    </view>
-
-    <view class="inputField disabled">
-      <input value="{{studentId}}" placeholder="学生 G 号" disabled />
-      <image src="../../icons/edit.png" class="editIcon"></image>
-    </view> -->
-
-    <!-- Counters -->
-    <view class="statsSection">
-      <view class="statRow">
-        <text>发布的物品 ({{postedCount}})</text>
-        <button class="viewBtn" bindtap="viewPosted">查看</button>
-      </view>
-      <view class="statRow">
-        <text>卖掉的物品 ({{soldCount}})</text>
-        <button class="viewBtn" bindtap="viewSold">查看</button>
-      </view>
-      <view class="statRow">
-        <text>得到的物品 ({{receivedCount}})</text>
-        <button class="viewBtn" bindtap="viewReceived">查看</button>
+        <image src="/icons/check.png" class="checkIcon"></image>
+        <text>Verified</text>
       </view>
     </view>
 
-    <!-- Favorites table -->
-    <view class="favoritesSection">
-      <view class="favHeader">
-        <image src="../../icons/star.png" class="starIcon"></image>
-        <text>我收藏的物品</text>
+    <scroll-view scroll-y="true" class="profileScroll">
+      <!-- Editable Fields -->
+      <view class="inputField">
+        <text class="fieldLabel">Name</text>
+        <input value="{{chiName}}" placeholder="Enter your name" />
+        <image src="/icons/edit.png" class="editIcon"></image>
       </view>
 
-      <view class="tableHeader">
-        <text class="colName">物品名称</text>
-        <text class="colSeller">卖家</text>
-        <text class="colStatus">状况</text>
-        <text class="colAction">更多</text>
+      <view class="inputField">
+        <text class="fieldLabel">Grade (Multi-select)</text>
+        <input value="{{grades}}" placeholder="Select grades" />
+        <image src="/icons/edit.png" class="editIcon"></image>
       </view>
 
-      <block wx:for="{{favoritesList}}" wx:key="id">
-        <view class="tableRow">
-          <text class="colName">{{item.name}}</text>
-          <view class="colSeller">
-            <image src="{{item.seller.avatar}}" class="avatarMini" />
-            <text>{{item.seller.name}}</text>
-            <text class="roleTag">{{item.seller.role}}</text>
-          </view>
-          <text class="colStatus">{{item.status}}</text>
-          <view class="colAction">
-            <button class="viewBtn">👁️</button>
-            <button class="removeBtn">❌</button>
-          </view>
+      <!-- Locked Fields -->
+      <view class="inputField locked">
+        <text class="fieldLabel">WeChat ID</text>
+        <input value="{{wechatId}}" disabled />
+        <image src="/icons/edit.png" class="editIcon"></image>
+      </view>
+
+      <view class="inputField locked">
+        <text class="fieldLabel">Phone Number</text>
+        <input value="{{phone}}" disabled />
+        <image src="/icons/edit.png" class="editIcon"></image>
+      </view>
+
+      <view class="inputField locked">
+        <text class="fieldLabel">Student ID</text>
+        <input value="{{studentId}}" disabled />
+        <image src="/icons/edit.png" class="editIcon"></image>
+      </view>
+
+      <!-- Stats Section -->
+      <view class="statsSection">
+
+        <view class="statRow">
+          <text>Items Posted ({{postedCount}})</text>
+          <button class="goldBtn" bindtap="viewPosted">View</button>
         </view>
-      </block>
-    </view>
+
+        <view class="statRow">
+          <text>Items Sold ({{soldCount}})</text>
+          <button class="goldBtn" bindtap="viewSold">View</button>
+        </view>
+
+        <view class="statRow">
+          <text>Items Received ({{receivedCount}})</text>
+          <button class="goldBtn" bindtap="viewReceived">View</button>
+        </view>
+
+      </view>
+
+      <!-- Favorites Section -->
+      <view class="favoritesSection">
+
+        <view class="favHeader">
+          <image src="/icons/star.png" class="starIcon"></image>
+          <text>My Favorites</text>
+        </view>
+
+        <view class="tableHeader">
+          <text class="colName">Item</text>
+          <text class="colSeller">Seller</text>
+          <text class="colStatus">Status</text>
+          <text class="colAction">More</text>
+        </view>
+
+        <block wx:for="{{favoritesList}}" wx:key="id">
+          <view class="tableRow">
+
+            <text class="colName">{{item.name}}</text>
+
+            <view class="colSeller">
+              <image src="{{item.seller.avatar}}" class="avatarMini" />
+              <text>{{item.seller.name}}</text>
+              <text class="roleTagSmall">{{item.seller.role}}</text>
+            </view>
+
+            <text class="colStatus">{{item.status}}</text>
+
+            <view class="colAction">
+              <text class="iconBtn">👁</text>
+              <text class="iconBtn remove">✖</text>
+            </view>
+
+          </view>
+        </block>
+
+      </view>
+    </scroll-view>
   </view>
 
-  <!-- Unregistered message -->
+  <!-- Not Registered -->
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">使用此服务需要先注册</text>
-    <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">现在注册</button>
+    <text class="subheading">Registration is required to use this service.</text>
+    <button class="goldBtn large" bindtap="guestLogin">Register Now</button>
   </view>
 
   <view id="main-menu-footer">
     <text class="main-menu-registration-information" wx:if="{{!needRegistration}}">
-      您已注册为 {{studentId}} {{chiName}}
+      Registered as {{studentId}} {{chiName}}
     </text>
-    <view id="version-footer" bindtap="adminOverride">版本 1.0.0</view>
+    <view id="version-footer" bindtap="adminOverride">Version 1.0.0</view>
   </view>
 </view>

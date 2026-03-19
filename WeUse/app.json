@@ -23,19 +23,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "主页",
+        "text": "Home",
         "iconPath": "icons/home.png",
         "selectedIconPath": "icons/home-sel.png"
       },
       {
         "pagePath": "pages/post/post",
-        "text": "发布",
+        "text": "Post",
         "iconPath": "icons/post.png",
         "selectedIconPath": "icons/post-sel.png"
       },
       {
         "pagePath": "pages/me/me",
-        "text": "我的",
+        "text": "Me",
         "iconPath": "icons/me.png",
         "selectedIconPath": "icons/me-sel.png"
       }

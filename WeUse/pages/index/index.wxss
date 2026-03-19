@@ -6,7 +6,7 @@
   font-size: 12pt;
   font-weight: bold;
   width: 89%;
-  margin: 0 3%;  
+  margin: 0 3%; 
   padding: 5px;
   padding-left: 20px;
   text-align: left;
@@ -24,7 +24,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 3%;
   white-space: nowrap;
 }
 
@@ -32,28 +31,8 @@ item-tile {
   width: 50%;
 }
 
-.item{
-  border-radius: 8px;
-  border: 1px solid black;
-  width: 45vw;
-  margin-bottom: 10px;
-}
-
 .itemScroll{
-  height: 77vh;
-}
-
-.itemText{
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  padding-top: 10px;
-  margin-left: 10px;
-}
-
-.itemImage{
-  width: 40vw;
-  height: 23vh;
+  height: 78vh;
 }
 
 .filterView{
@@ -62,7 +41,7 @@ item-tile {
   align-items: center;
   position: relative;
   left: 0rpx;
-  top: -86rpx;
+  top: -85rpx;
 }
 
 .filterMenu{

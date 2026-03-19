@@ -88,10 +88,10 @@ Page({
         mask: true
       })
       wx.showModal({
-        title: '确认注册',
+        title: 'Confirm Registration',
         content: '您确认提交注册信息吗？信息提交后不可更改。',
-        cancelText: '取消',
-        confirmText: '确认',
+        cancelText: 'Cancel',
+        confirmText: 'Confirm',
         complete: async (res) => {
           if (res.confirm) {
             await wx.cloud.callFunction({

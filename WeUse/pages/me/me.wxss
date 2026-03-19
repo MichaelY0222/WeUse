@@ -1,4 +1,13 @@
 /* pages/me/me.wxss */
+/* Top Bar */
+.sectionTitle {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 0 30rpx 20rpx 30rpx;
+}
+.profileScroll{
+  height: 55vh;
+}
 
 /* Footer Section */
 #main-menu-footer {
@@ -32,174 +41,184 @@
   font-size: 17px;
 }
 
-/* Profile Box */
+/* Profile */
 .profileBox {
   display: flex;
   align-items: center;
-  padding: 16px;
+  padding: 20rpx 30rpx;
 }
 
 .avatar {
-  width: 70px;
-  height: 70px;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: 20rpx;
 }
 
-.nameBadge {
+.profileInfo {
   flex: 1;
 }
 
 .nickname {
+  font-size: 32rpx;
   font-weight: bold;
-  font-size: 18px;
 }
 
-.tag {
+.roleTagMain {
   display: inline-block;
-  background-color: #FFD700;
-  color: black;
-  border-radius: 5px;
-  padding: 2px 8px;
-  font-size: 13px;
-  margin-top: 4px;
+  background: #FFD700;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  margin-top: 10rpx;
+  font-size: 22rpx;
 }
 
 .verifiedBadge {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: green;
-  margin-left: auto;
+  color: #4CAF50;
+  font-size: 24rpx;
 }
 
 .checkIcon {
-  width: 20px;
-  height: 20px;
-  margin-right: 4px;
+  width: 36rpx;
+  height: 36rpx;
+  margin-right: 6rpx;
 }
 
 /* Input Fields */
 .inputField {
+  margin: 16rpx 30rpx;
+  padding: 16rpx;
+  border: 3rpx solid #FFD700;
+  border-radius: 16rpx;
+  background: white;
   display: flex;
   align-items: center;
-  margin: 8px 16px;
-  border: 2px solid gold;
-  border-radius: 6px;
-  padding: 4px 10px;
+}
+
+.fieldLabel {
+  width: 220rpx;
+  font-size: 24rpx;
+  color: #333;
 }
 
 .inputField input {
   flex: 1;
-  font-size: 15px;
-  border: none;
-  outline: none;
+  font-size: 26rpx;
 }
 
 .editIcon {
-  width: 16px;
-  height: 16px;
-  margin-left: 6px;
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 10rpx;
 }
 
-/* Disabled (locked) fields */
-.inputField.disabled {
+.locked {
   opacity: 0.5;
 }
 
-/* Stats Section */
+/* Stats */
 .statsSection {
-  margin: 16px;
+  margin: 30rpx;
+  border-top: 2rpx solid #ddd;
+  border-bottom: 2rpx solid #ddd;
+  padding: 20rpx 0;
 }
 
 .statRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 16rpx;
 }
 
-.viewBtn {
-  background-color: #FFD700;
+.goldBtn {
+  background: #FFD700;
+  border-radius: 12rpx;
+  padding: 6rpx 24rpx;
+  font-size: 24rpx;
   border: none;
-  border-radius: 5px;
-  padding: 3px 10px;
-  font-size: 14px;
 }
 
-/* Favorites Section */
+.goldBtn.large {
+  padding: 20rpx 40rpx;
+}
+
+/* Favorites */
 .favoritesSection {
-  margin: 16px;
+  margin: 30rpx;
 }
 
 .favHeader {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 16rpx;
+  font-weight: bold;
 }
 
 .starIcon {
-  width: 18px;
-  height: 18px;
-  margin-right: 6px;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
 }
 
-.tableHeader, .tableRow {
+.tableHeader,
+.tableRow {
   display: flex;
   align-items: center;
-  padding: 4px 0;
+  padding: 12rpx 0;
 }
 
 .tableHeader {
   font-weight: bold;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 2rpx solid #ccc;
 }
 
 .tableRow {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1rpx solid #eee;
 }
 
 .colName {
   width: 30%;
-  padding-left: 8px;
 }
 
 .colSeller {
-  width: 25%;
+  width: 30%;
   display: flex;
   align-items: center;
 }
 
 .colStatus {
   width: 20%;
-  color: green;
+  color: #2e7d32;
 }
 
 .colAction {
-  width: 25%;
+  width: 20%;
   display: flex;
   justify-content: space-around;
 }
 
 .avatarMini {
-  width: 20px;
-  height: 20px;
+  width: 40rpx;
+  height: 40rpx;
   border-radius: 50%;
-  margin-right: 4px;
+  margin-right: 6rpx;
 }
 
-.roleTag {
-  font-size: 12px;
-  background-color: #f0f0f0;
-  color: #333;
-  border-radius: 4px;
-  padding: 0 4px;
-  margin-left: 4px;
+.roleTagSmall {
+  background: #eee;
+  padding: 2rpx 8rpx;
+  border-radius: 10rpx;
+  font-size: 20rpx;
+  margin-left: 6rpx;
 }
 
-.removeBtn {
-  background: none;
-  border: none;
-  font-size: 16px;
+.iconBtn {
+  font-size: 28rpx;
+}
+
+.iconBtn.remove {
   color: red;
 }

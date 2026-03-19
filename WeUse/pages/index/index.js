@@ -35,7 +35,7 @@ Page({
       filteredItemList: await this.data.cacheSingleton.getItems(),
       showDebugInfo: await wx.getStorageSync('showDebug'),
     })
-    console.log(this.data.itemList)
+    // console.log(this.data.itemList)
     let tempList = [];
     for (let i = 0; i < this.data.itemList.length; i++) {
       if (!tempList.includes(this.data.itemList[i].subject)) {

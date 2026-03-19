@@ -38,14 +38,14 @@ Page({
     if (!needRegistration) {
       const studentId = await this.data.cacheSingleton.fetchUserInfo('studentId');
       const chiName = await this.data.cacheSingleton.fetchUserInfo('chiName');
-      const avatarUrl = await this.data.cacheSingleton.fetchUserInfo('avatarUrl');
-      const wechatId = await this.data.cacheSingleton.fetchUserInfo('wechatId');
-      const phoneNumber = await this.data.cacheSingleton.fetchUserInfo('phoneNumber');
-      const gNumber = await this.data.cacheSingleton.fetchUserInfo('gNumber');
-      const postCounts = await this.data.cacheSingleton.fetchPostCount();
-      const sellCounts = await this.data.cacheSingleton.fetchSellCount();
-      const getCounts = await this.data.cacheSingleton.fetchGetCount();
-      const favorites = await this.data.cacheSingleton.fetchFavorites();
+      // const avatarUrl = await this.data.cacheSingleton.fetchUserInfo('avatarUrl');
+      // const wechatId = await this.data.cacheSingleton.fetchUserInfo('wechatId');
+      // const phoneNumber = await this.data.cacheSingleton.fetchUserInfo('phoneNumber');
+      // const gNumber = await this.data.cacheSingleton.fetchUserInfo('gNumber');
+      // const postCounts = await this.data.cacheSingleton.fetchPostCount();
+      // const sellCounts = await this.data.cacheSingleton.fetchSellCount();
+      // const getCounts = await this.data.cacheSingleton.fetchGetCount();
+      // const favorites = await this.data.cacheSingleton.fetchFavorites();
 
       this.setData({
         studentId,

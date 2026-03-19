@@ -57,10 +57,10 @@
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">使用此服务需要先注册</text>
+    <text class="subheading">Registration is required to use this service.</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">现在注册</button>
+    <button class="button" bindtap="guestLogin">Register Now</button>
     <view class="spacelast"></view>
-    <button class="button" bindtap="home">返回主页</button>
+    <button class="button" bindtap="home">Back to Home</button>
   </view>
 </view>

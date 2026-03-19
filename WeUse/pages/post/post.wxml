@@ -3,48 +3,113 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/post/post.wxml</text>
   <view class="heading">
-    <text>发布</text>
+    <text>Post</text>
     <image src="../../icons/scan.svg" class="iconscan" bindtap="scan"></image>
   </view>
   <view class="spacelast"></view>
   <view wx:if="{{!needRegistration}}">
-    <view class="container">
-      <view class="image-grid">
-        <view class="cover-photo-label">封面<br/>Cover Photo</view>
-        <block wx:for="{{images}}" wx:key="index">
-          <view class="image-box">
-            <image src="{{item}}" class="item-image" />
-            <text class="delete-btn" bindtap="removeImage" data-index="{{index}}">x</text>
-            <text class="img-index">{{index + 1}}</text>
+    <view class="form-container">
+
+      <!-- Photo Section -->
+      <view class="photo-section">
+
+        <!-- Large Add Photo -->
+        <view class="main-photo" bindtap="chooseImage">
+          <image src="/images/addimage.png" class="main-photo-icon"></image>
+          <view class="main-photo-text">
+            <text>Upload Images</text>
           </view>
-        </block>
-        <view class="image-box" wx:if="{{images.length < 4}}" bindtap="chooseImage">
-          <image src="../images/addimage.png" class="add-image-icon" />
+        </view>
+
+        <!-- Right 4-grid -->
+        <view class="side-grid">
+          <block wx:for="{{images}}" wx:key="index">
+            <view class="grid-item" bindtap="removeImage" data-index="{{index}}">
+              <image src="{{item}}" class="grid-image"></image>
+              <view class="delete-btn">×</view>
+              <view class="grid-index">{{index + 1}}</view>
+            </view>
+          </block>
+
+          <block wx:for="{{6 - images.length}}" wx:key="empty">
+            <view class="grid-item empty"></view>
+          </block>
+        </view>
+
+      </view>
+
+      <!-- Name -->
+      <view class="field">
+        <text class="field-label">Item Name</text>
+        <input class="input-yellow"
+              placeholder="Input Item Name Here"
+              bindinput="onInput"
+              data-field="name" />
+      </view>
+
+      <!-- Grade -->
+      <view class="field">
+        <text class="field-label">Applicable Grades (Select Multiple)</text>
+        <picker mode="selector" range="{{gradesOptions}}" bindchange="onGradeChange">
+          <view class="select-yellow">
+            {{formData.grades || 'All Grades'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- Subject -->
+      <view class="field">
+        <text class="field-label">Applicable Subjects (Select Multiple)</text>
+        <picker mode="selector" range="{{subjectOptions}}" bindchange="onSubjectChange">
+          <view class="select-yellow">
+            {{formData.subject || 'All Subjects'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- Level -->
+      <view class="field">
+        <text class="field-label">Applicable Levels (Select Multiple)</text>
+        <picker mode="selector" range="{{levelOptions}}" bindchange="onLevelChange">
+          <view class="select-yellow">
+            {{formData.level || 'All Levels'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- Description -->
+      <view class="field">
+        <text class="field-label">Item Description</text>
+        <textarea class="textarea-green"
+                  placeholder="Input Description Here"
+                  bindinput="onInput"
+                  data-field="description"></textarea>
+      </view>
+
+      <!-- Price -->
+      <view class="field">
+        <text class="field-label">Item Price</text>
+        <view class="price-wrapper">
+          <text class="yen">￥</text>
+          <input type="number"
+                class="price-input"
+                placeholder="0.00"
+                bindinput="onInput"
+                data-field="price"/>
         </view>
       </view>
-      <input class="input-box" placeholder="名称" bindinput="onInput" data-field="name" />
-      <picker mode="selector" range="{{gradesOptions}}" bindchange="onGradeChange">
-        <view class="picker-box">{{formData.grades || '适用年级(可多选)'}}</view>
-      </picker>
-      <picker mode="selector" range="{{subjectOptions}}" bindchange="onSubjectChange">
-        <view class="picker-box">{{formData.subject || '适用科目(可多选)'}}</view>
-      </picker>
-      <picker mode="selector" range="{{levelOptions}}" bindchange="onLevelChange">
-        <view class="picker-box">{{formData.level || '适用水平(可多选)'}}</view>
-      </picker>
-      <textarea class="textarea-box" placeholder="物品介绍" bindinput="onInput" data-field="description"></textarea>
-      <view class="price-box">
-        <text class="currency">￥</text>
-        <input class="price-input" type="number" placeholder="0.00" bindinput="onInput" data-field="price" />
-      </view>
-      <button class="submit-btn" bindtap="submitForm">POST发布</button>
-</view>
 
+      <!-- Submit -->
+      <button class="post-btn" bindtap="submitForm">
+        Post Item
+      </button>
+
+    </view>
   </view>
   <view wx:else class="container">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">使用此服务需要先注册</text>
+    <text class="subheading">Registration is required to use this service.</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="guestLogin">现在注册</button>
+    <button class="button" bindtap="guestLogin">Register Now</button>
   </view>
 </view>

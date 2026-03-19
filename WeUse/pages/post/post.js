@@ -1,164 +1,219 @@
 // pages/post/post.js
 import CacheSingleton from '../../classes/CacheSingleton';
 const { handleCode } = require('../../utils/handleCode');
-let QRData = '';
-const userCredentials = require('../../userCredentials.js');
 
 Page({
   data: {
     cacheSingleton: CacheSingleton,
-    itemList: [],
     showDebugInfo: false,
     needRegistration: false,
-    userOpenId: 'undefined',
-    grades: ['All','1','2','3','4','5','6','7','8','10','11','12'],
-    subjects: ['All'],
-    levels: ['All', 'S', 'S+', 'H', 'H+'],
-    locations: ['ZXB中興樓', 'ZTB甄陶樓', 'LMB龍門樓'],
-    selectedGrade: 0,
-    selectedSubject: 0,
-    selectedLevel: 0,
-    selectedLocation: 0,
+    userOpenId: '',
+
+    // Options
+    gradesOptions: ['All Grades','1','2','3','4','5','6','7','8','9','10','11','12'],
+    subjectOptions: ['All Subjects'],
+    levelOptions: ['All Levels', 'S', 'S+', 'H', 'H+'],
+
+    // Images
     images: [],
-    itemName: '',
-    itemPrice: ''
-  },
 
-  onLoad: async function(options) {
-    this.data.cacheSingleton = CacheSingleton.getInstance();
-    this.setData({
-      userOpenId: await this.data.cacheSingleton.fetchUserOpenId(),
-      needRegistration: await this.data.cacheSingleton.determineNeedNewUser(),
-      showDebugInfo: wx.getStorageSync('showDebug'),
-      itemList: await this.data.cacheSingleton.getItems(),
-    });
-
-    let tempList = [];
-    for (let i = 0; i < this.data.itemList.length; i++) {
-      if (!tempList.includes(this.data.itemList[i].subject)) {
-        tempList.push(this.data.itemList[i].subject);
-      }
+    // Form Data
+    formData: {
+      name: '',
+      grades: '',
+      subject: '',
+      level: '',
+      description: '',
+      price: ''
     }
+  },
+
+  async onLoad() {
+    const cache = CacheSingleton.getInstance();
+
     this.setData({
-      subjects: this.data.subjects.concat(tempList.sort())
+      cacheSingleton: cache,
+      userOpenId: await cache.fetchUserOpenId(),
+      needRegistration: await cache.determineNeedNewUser(),
+      showDebugInfo: wx.getStorageSync('showDebug')
+    });
+
+    // Dynamically build subject list
+    const items = await cache.getItems();
+    let subjectSet = new Set();
+
+    items.forEach(item => {
+      if (item.subject) subjectSet.add(item.subject);
+    });
+
+    this.setData({
+      subjectOptions: ['All Subjects', ...Array.from(subjectSet).sort()]
     });
   },
 
-  scan: function (event) {
+  // ======================
+  // SCAN
+  // ======================
+  scan() {
     wx.scanCode({
       onlyFromCamera: true,
-      success: (res) => {
-        handleCode(res.result);
-      },
+      success: (res) => handleCode(res.result),
       fail: (res) => {
         if (res.errMsg !== 'scanCode:fail cancel') {
-          console.error(res);
           wx.navigateTo({ url: '/pages/scanFail/scanFail' });
         }
-      },
+      }
     });
   },
 
-  guestLogin: function () {
+  guestLogin() {
     wx.reLaunch({ url: '/pages/registration/registration' });
   },
 
-  bindGradeChange: function(e) {
-    this.setData({ selectedGrade: e.detail.value });
-  },
+  // ======================
+  // IMAGE HANDLING
+  // ======================
+  chooseImage() {
+    const remaining = 6 - this.data.images.length;
 
-  bindSubjectChange: function(e) {
-    this.setData({ selectedSubject: e.detail.value });
-  },
-
-  bindLevelChange: function(e) {
-    this.setData({ selectedLevel: e.detail.value });
-  },
-
-  bindLocationChange: function(e) {
-    this.setData({ selectedLocation: e.detail.value });
-  },
-
-  onItemNameInput: function(event) {
-    this.setData({ itemName: event.detail.value });
-  },
-
-  onPriceInput: function(event) {
-    this.setData({ itemPrice: event.detail.value });
-  },
-
-  uploadImage: function() {
-    const that = this;
     wx.chooseMedia({
-      count: 4 - that.data.images.length,
+      count: remaining,
       mediaType: ['image'],
       sourceType: ['album', 'camera'],
-      success(res) {
-        that.setData({
-          images: that.data.images.concat(res.tempFiles.map(f => f.tempFilePath))
+      success: (res) => {
+        const newImgs = res.tempFiles.map(f => f.tempFilePath);
+        this.setData({
+          images: [...this.data.images, ...newImgs]
         });
       }
     });
   },
 
-  removeImage: function(e) {
+  removeImage(e) {
     const index = e.currentTarget.dataset.index;
     const updated = [...this.data.images];
     updated.splice(index, 1);
     this.setData({ images: updated });
   },
 
-  postItem: async function() {
-    if (!this.data.itemName || this.data.images.length === 0) {
-      wx.showToast({ title: '请填写名称并上传图片', icon: 'none' });
+  // ======================
+  // INPUT HANDLING
+  // ======================
+  onInput(e) {
+    const field = e.currentTarget.dataset.field;
+    const value = e.detail.value;
+
+    this.setData({
+      [`formData.${field}`]: value
+    });
+  },
+
+  onGradeChange(e) {
+    const value = this.data.gradesOptions[e.detail.value];
+    this.setData({
+      'formData.grades': value
+    });
+  },
+
+  onSubjectChange(e) {
+    const value = this.data.subjectOptions[e.detail.value];
+    this.setData({
+      'formData.subject': value
+    });
+  },
+
+  onLevelChange(e) {
+    const value = this.data.levelOptions[e.detail.value];
+    this.setData({
+      'formData.level': value
+    });
+  },
+
+  // ======================
+  // SUBMIT
+  // ======================
+  async submitForm() {
+    const { formData, images, userOpenId } = this.data;
+
+    if (!formData.name) {
+      wx.showModal({
+        title: 'All Fields are Required',
+        content: 'Please input item name before posting',
+        showCancel: false,
+        confirmText: "Dismiss"
+      })
       return;
     }
 
-    wx.showLoading({ title: '上传中...' });
+    if (images.length === 0) {
+      wx.showModal({
+        title: 'All Fields are Required',
+        content: 'Please upload at least one image before posting',
+        showCancel: false,
+        confirmText: "Dismiss"
+      })
+      return;
+    }
+
+    wx.showLoading({ title: 'Uploading...' });
+
+    let checkItemConfig = await wx.cloud.database().collection("itemConfig").where({
+      key: "idIndex",
+    }).get();
 
     try {
-      const uploadedImgs = await Promise.all(
-        this.data.images.map((imgPath, idx) => {
+      // 1️⃣ Upload Images
+      const uploaded = await Promise.all(
+        images.map((imgPath, index) => {
           return wx.cloud.uploadFile({
-            cloudPath: `itemImages/${Date.now()}-${idx}.png`,
+            cloudPath: `itemImages/${formData.name}-${Date.now()/1000}-${index}.png`,
             filePath: imgPath
           });
         })
       );
 
-      const db = wx.cloud.database();
-      const form = this.data;
+      const fileIDs = uploaded.map(res => res.fileID);
 
-      await db.collection('Items').add({
+      // 2️⃣ Save to Database
+      const db = wx.cloud.database();
+
+      await db.collection('items').add({
         data: {
-          index: 1,
-          id: Math.floor(Math.random() * 10000),
-          name: form.itemName,
+          id: checkItemConfig.data[0].id,
+          index: checkItemConfig.data[0].index,
+          name: formData.name,
+          description: formData.description || '',
+          grades: formData.grades || 'All Grades',
+          subject: formData.subject || 'All Subjects',
+          level: formData.level || 'All Levels',
+          contributor: userOpenId,
+          imgUrl: fileIDs,
           quantity: 1,
-          grades: form.grades[form.selectedGrade],
-          subject: form.subjects[form.selectedSubject],
-          contributor: form.userOpenId,
-          imgUrl: uploadedImgs.map(f => f.fileID),
-          stamps: parseFloat(form.itemPrice) * 10,
-          level: form.levels[form.selectedLevel],
-          needsApproval: false,
-          description: 'Say something about this item...'
+          stamps: parseFloat(formData.price || 0) * 10,
+          needsApproval: false
         }
       });
 
       wx.hideLoading();
-      wx.showToast({ title: '发布成功', icon: 'success' });
+      wx.showToast({ title: 'Success', icon: 'success' });
 
+      // Reset form
       this.setData({
         images: [],
-        itemName: '',
-        itemPrice: ''
+        formData: {
+          name: '',
+          grades: '',
+          subject: '',
+          level: '',
+          description: '',
+          price: ''
+        }
       });
 
     } catch (err) {
       wx.hideLoading();
       console.error(err);
-      wx.showToast({ title: '发布失败', icon: 'error' });
+      wx.showToast({ title: 'Failed', icon: 'none' });
     }
   }
 });
