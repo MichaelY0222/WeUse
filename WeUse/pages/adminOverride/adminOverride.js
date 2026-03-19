@@ -1,4 +1,3 @@
-// const userCredentials = require('../../userCredentials.js');
 import CacheSingleton from '../../classes/CacheSingleton';
 
 // let usernameset = '';

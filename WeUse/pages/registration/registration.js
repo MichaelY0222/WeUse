@@ -1,7 +1,6 @@
 // pages/registration/registration.js
 const { handleCode } = require('../../utils/handleCode');
 let QRData = '';
-const userCredentials = require('../../userCredentials.js');
 const studentData = require('../../studentData.js');
 let usernameset = '';
 Page({
@@ -14,7 +13,7 @@ Page({
     chiName: '', // Store the entered password
     scanUsername: '',
     grade: 0,
-    gradeOptions: ['请选择...','12','11','10','9','8','7','6','5','4','3','2','1'],
+    gradeOptions: ['Please Select...','12','11','10','9','8','7','6','5','4','3','2','1'],
     showDebugInfo: false,
   },
 
@@ -84,12 +83,12 @@ Page({
     const regex = /^G(201[3-9]|202[0-4])010\d{3}$/;
     if (this.data.chiName.length !== 0 && this.data.grade !== "0" && regex.test(this.data.studentId)) {
       wx.showLoading({
-        title: '加载中...',
+        title: 'Loading...',
         mask: true
       })
       wx.showModal({
         title: 'Confirm Registration',
-        content: '您确认提交注册信息吗？信息提交后不可更改。',
+        content: 'Your registration is permanent and cannot be changed.',
         cancelText: 'Cancel',
         confirmText: 'Confirm',
         complete: async (res) => {
@@ -110,10 +109,10 @@ Page({
       })
     } else {
       wx.showModal({
-        title: '错误',
-        content: '您必须填写所有信息才能注册。请完善所有信息至指定的格式后重试。',
+        title: 'Error',
+        content: 'You must complete all fields to the correct format to submit your registration.',
         showCancel: false,
-        confirmText: '确认',
+        confirmText: 'Dismiss',
       })
     }
   },

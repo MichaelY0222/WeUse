@@ -3,34 +3,34 @@
   <image src="../../icons/logo.svg" class="weUseLogo"></image>
   <text hidden="{{!showDebugInfo}}">pages/adminOverride/adminOverride.wxml</text>
   <view class="heading">
-    <text>管理员操作</text>
+    <text>Admin Override</text>
   </view>
   <!-- <view wx:if="{{!loginStatus}}">
     <view class="spacelast"></view>
-    <input class="input" placeholder="用户名" bindinput="onUsernameInput" value="{{ username }}">
+    <input class="input" placeholder="Username" bindinput="onUsernameInput" value="{{ username }}">
       <image src="../../icons/scan.svg" class="iconField" bindtap="scan"></image>
     </input>
     <view class="space"></view>
-    <input class="input" type="password" placeholder="密码" bindinput="onPasswordInput" bindconfirm="onLogin" value="{{ password }}"/>
+    <input class="input" type="password" placeholder="Password" bindinput="onPasswordInput" bindconfirm="onLogin" value="{{ password }}"/>
     <view class="space"></view>
-    <view class="subtextBlue" bindtap="pwdreset">忘记密码？</view>
+    <view class="subtextBlue" bindtap="pwdreset">Forgot Password?</view>
     <view class="spacelast"></view>
-    <button class="button" bindtap="onLogin">登录</button>
+    <button class="button" bindtap="onLogin">Login</button>
   </view> -->
   <view class="container" wx:if="{{!isAdmin}}">
     <image src="../../icons/lock.png" class="lockIcon"></image>
-    <text class="subheading">您无权限访问此页面，</text>
-    <text class="subheading">请联系管理员开通相关权限，</text>
-    <text class="subheading">或返回主页，谢谢！</text>
+    <text class="subheading">You do not have access to view this page</text>
+    <text class="subheading">Please contact the system administrator</text>
+    <text class="subheading">Or return to home</text>
     <view class="spacelast"></view>
-    <button class="button" bindtap="home">返回主页</button>
+    <button class="button" bindtap="home">Return to Home</button>
   </view>
   <view wx:else>
     <view class="spacelast"></view>
-    <switch class="switch" checked="{{showDebugInfo}}" bindchange="onDebugSwitch">显示调试信息</switch>
+    <switch class="switch" checked="{{showDebugInfo}}" bindchange="onDebugSwitch">Show Debug Info</switch>
     <view class="space" hidden="{{!showDebugInfo}}"></view>
     <button class="button" hidden="{{!showDebugInfo}}" bindtap="onViewLogs">View Logs</button>
     <view class="spacelast"></view>
-    <button class="button" bindtap="home">返回主页</button>
+    <button class="button" bindtap="home">Return to Home</button>
   </view>
 </view>

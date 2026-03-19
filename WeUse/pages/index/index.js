@@ -2,8 +2,6 @@
 import CacheSingleton from '../../classes/CacheSingleton';
 const { handleCode } = require('../../utils/handleCode');
 let QRData = '';
-const userCredentials = require('../../userCredentials.js');
-const { join } = require('../../userCredentials.js');
 
 Page({
   /**

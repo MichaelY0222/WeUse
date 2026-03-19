@@ -23,26 +23,24 @@
         <view class="seller-info">
           <image class="profile-pic" mode="aspectFill" src="/images/profilepic.png"></image>
           <view class="verified-seller">
-            <text class="verified-text">✔ Verified Seller 合格卖家</text>
+            <text class="verified-text">✔ Verified Seller</text>
             <text class="seller-name">Joe M.</text>
-            <text class="seller-role">Parent 家长</text>
+            <text class="seller-role">Parent</text>
           </view>
         </view>
         <view class="item-details">
-          <text class="item-name">{{itemList[itemIndex].name}} [max 2 lines of txt blah blah blah blah blah]</text>
+          <text class="item-name">{{itemList[itemIndex].name}}</text>
         </view>
         <view class="additional-info">
-          <text class="info-title">Grade(s) 适用年级</text>
+          <text class="info-title">Grade(s)</text>
           <text class="info-content yellow-text">{{itemList[itemIndex].grades}}</text>
-          <text class="info-title">Subject(s) 适用科目</text>
+          <text class="info-title">Subject(s)</text>
           <text class="info-content yellow-text">{{itemList[itemIndex].subject}}</text>
-          <text class="info-title">Level(s)适用水平</text>
+          <text class="info-title">Level(s)</text>
           <text class="info-content yellow-text">{{itemList[itemIndex].level}}</text>
           <view class="horizontal-line"></view>
-          <text class="info-title">\nDescription 物品介绍</text>
-          <text class="item-description green-text">{{itemList[itemIndex].description}} [This is a sample description. Blahblahblah非常好用
-          (we can let ppl scroll down)]
-          \n\n\n\n\n\n\n</text>
+          <text class="info-title">\nDescription</text>
+          <text class="item-description green-text">{{itemList[itemIndex].description}}</text>
         </view>
       </view>
       <div class="bottomcontainer">

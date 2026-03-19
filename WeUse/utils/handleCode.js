@@ -14,24 +14,24 @@ export async function handleCode(x) {
   if (x.length<6) {
     // not a valid code
     console.log("Incorrect Length");
-    reportCodeScanError("此二维码不适用于 WeUse 服务。");
+    reportCodeScanError("This is not a valid WeUse QR Code.");
     return;
   }
   if (x.substr(0,6)!=="weUse;") {
     // does not have the appropriate format header
     console.log("Incorrect Header");
-    reportCodeScanError("此二维码不适用于 WeUse 服务。");
+    reportCodeScanError("This is not a valid WeUse QR Code.");
     return;
   }
   x=x.substr(6);
   if (x.indexOf(';')===-1||x.indexOf(';')===x.length) {
     console.log("Incorrect Semicolon Format");
-    reportCodeScanError("此二维码不适用于 WeUse 服务。");
+    reportCodeScanError("This is not a valid WeUse QR Code.");
     return;
   }
   let qrCodeVersion = x.substr(0, x.indexOf(';'));
   if (qrCodeVersion !== "1") {
-    reportCodeScanError(`此二维码版本过低。（此二维码版本 ${qrCodeVersion}，系统支持版本 1）`);
+    reportCodeScanError(`This QR code is of an unsupported version (QR Code Version ${qrCodeVersion}, supported QR code version 1)`);
     return;
   }
   x=x.substr(x.indexOf(';')+1);
@@ -49,7 +49,7 @@ export async function handleCode(x) {
   let keyToValueMap = new Map();
   for (let i=0;i<portions.length;i++) {
     if (portions[i].indexOf('-')===-1) {
-      reportCodeScanError(`二维码解析错误：找不到 ${portions[i]} 的相应值。`);
+      reportCodeScanError(`QR Code Parse Error: Cannot locate the value of ${portions[i]}`);
       return;
     }
     keyToValueMap.set(portions[i].substr(0, portions[i].indexOf('-')), portions[i].substr(portions[i].indexOf('-')+1));
@@ -59,12 +59,12 @@ export async function handleCode(x) {
     // convert from base64
     let payload = keyToValueMap.get('dat');
     if (payload.indexOf('-')===-1 || payload.indexOf('-')===payload.length-1) {
-      reportCodeScanError(`二维码解析错误："dat" 格式错误。`);
+      reportCodeScanError(`QR Code Parse Error: Incorrect "dat" format`);
       return;
     }
     let length = Number.parseInt(payload.substr(0, payload.indexOf('-')));
     if (length === NaN || length < 0 || length > 1024) {
-      reportCodeScanError(`二维码解析错误：长度错误 ${payload.substr(0, payload.indexOf('-'))}  "dat" 格式错误。`);
+      reportCodeScanError(`QR Code Parse Error: Incorrect Length ${payload.substr(0, payload.indexOf('-'))} Incorrect "dat" format`);
       return;
     }
     let base64ToBinaryMap = get64ToBinaryMap();
@@ -74,7 +74,7 @@ export async function handleCode(x) {
       payloadBinaryData.push.apply(payloadBinaryData, base64ToBinaryMap[payload.charAt(i)]);
     }
     if (length*8>payloadBinaryData.length) {
-      reportCodeScanError(`二维码解析错误：数据长度错误。`);
+      reportCodeScanError(`QR Code Parse Error: Data Length Error`);
       return;
     }
     let payloadData = [];
@@ -103,9 +103,9 @@ export async function handleCode(x) {
         url: '/pages/adminDebug/adminDebug',
       })
     } else {
-      reportCodeScanError(`此二维码类型 ${keyToValueMap.get("type")} 错误。`);
+      reportCodeScanError(`This QR code is of the unknown type ${keyToValueMap.get("type")}`);
     }
   } else {
-    reportCodeScanError(`此二维码已绑定到未知活动：${keyToValueMap.get("event")}。`);
+    reportCodeScanError(`This QR code is bound to the unknown event ${keyToValueMap.get("event")}`);
   }
 }

@@ -15,7 +15,7 @@ class CacheSingleton {
     }
     static initialize(db) {
         wx.showLoading({
-          title: '加载中...',
+          title: 'Loading...',
           mask: true
         }); 
         if (instance === null) {
@@ -26,7 +26,7 @@ class CacheSingleton {
     }
     static getInstance() {
         wx.showLoading({
-          title: '加载中...',
+          title: 'Loading...',
           mask: true
         });
         if (instance === null) {
@@ -51,7 +51,7 @@ class CacheSingleton {
     }
     async fetchUserOpenId() {
       wx.showLoading({
-        title: '加载中...',
+        title: 'Loading...',
         mask: true
       });
       if (this.#userOpenId !== undefined) {
@@ -68,7 +68,7 @@ class CacheSingleton {
 
     async determineNeedNewUser() {
       wx.showLoading({
-        title: '加载中...',
+        title: 'Loading...',
         mask: true
       });
       if (this.#needRegistration !== undefined) {

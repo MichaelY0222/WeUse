@@ -6,15 +6,15 @@
     <text>Registration</text>
   </view>
   <view class="space"></view>
-  <text class="notes">由于部份 WeUse 服务仅供 SHSID 学生及其家长使用，使用其服务需要先完成注册。</text>
-  <text class="notes">请您填写以下信息，信息提交后不可更改，虚假注册的用户将被停用。</text>
-  <text class="notes">您的学生证在您身边吗？您可使用扫描按钮快速注册！</text>
+  <text class="notes">Most WeUse services are only available to students and parents within SHSID, and registration is required.</text>
+  <text class="notes">Please fill in the below form, and once sumbitted, it cannot be changed. Users who use false information may face account suspension</text>
+  <text class="notes">Fun Fact: You may use your student ID for a smoother registration process</text>
   <view class="spacelast"></view>
-  <input class="input" placeholder="学号" placeholder-style="color: var(--primary);" bindinput="onStudentIdInput" value="{{ studentId }}">
+  <input class="input" placeholder="Student ID" placeholder-style="color: var(--primary);" bindinput="onStudentIdInput" value="{{ studentId }}">
       <image src="../../icons/scan.svg" class="iconField" bindtap="scanId"></image>
   </input>
   <view class="space"></view>
-  <input class="input" placeholder="中文姓名" placeholder-style="color: var(--primary);" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
+  <input class="input" placeholder="Chinese Name" placeholder-style="color: var(--primary);" bindinput="onChiNameInput" bindconfirm="onVerify" value="{{ chiName }}"/>
   <view class="space"></view>
   <picker class="input" mode="selector" range="{{gradeOptions}}" value="{{grade}}" bindchange="gradeChanged">
     <view class="question-select">
@@ -23,10 +23,10 @@
     </view>
   </picker>
   <view class="spacelast"></view>
-  <button class="button" bindtap="onVerify">注册</button>
+  <button class="button" bindtap="onVerify">Register</button>
   <view class="spacelast"></view>
   <!--button class="button" bindtap="SSOLogin">Verify On one.shs.cn</button>
   <view class="spacelast"></view-->
-  <button class="button" bindtap="home">返回主页</button>
-  <button id="helpButton" class="button" open-type="contact">联系客服/无法注册</button>
+  <button class="button" bindtap="home">Return to Home</button>
+  <button id="helpButton" class="button" open-type="contact">Contact Customer Support</button>
 </view>
